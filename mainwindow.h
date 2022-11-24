@@ -27,6 +27,9 @@ public:
     int port;
     QSqlDatabase dbconn;
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
