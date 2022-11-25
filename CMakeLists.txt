@@ -24,6 +24,9 @@ set(PROJECT_SOURCES
         login.h
         login.ui
         Common.h
+        initialpage.cpp
+        initialpage.h
+        initialpage.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

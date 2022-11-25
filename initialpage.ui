@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>InitialPage</class>
+ <widget class="QDialog" name="InitialPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="userLogin">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>110</y>
+     <width>92</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>用户登录</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="userRegister">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>180</y>
+     <width>92</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>用户注册</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>userLogin</sender>
+   <signal>clicked()</signal>
+   <receiver>InitialPage</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>237</x>
+     <y>112</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>310</x>
+     <y>51</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>userRegister</sender>
+   <signal>clicked()</signal>
+   <receiver>InitialPage</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>210</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>328</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
