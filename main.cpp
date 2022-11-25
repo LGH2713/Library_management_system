@@ -16,8 +16,6 @@ int main(int argc, char *argv[])
     Register reg;
 
 
-
-
     // UI 控制流程
     if(initPage.exec() == QDialog::Accepted) {
         if(initPage.btnType == "userLogin")// 初始页 -> 登录页
@@ -35,7 +33,11 @@ int main(int argc, char *argv[])
             // 注册页 -> 登录页
             if(reg.exec() == QDialog::Accepted && reg.btnType == "registerBtn") {
                 login.show();
-                return a.exec();
+                // 登录页 -> 主页
+                if(login.exec() == QDialog::Accepted && login.btnType == "loginBtn") {
+                    w.show();
+                    return a.exec();
+                }
             }
             else
                 return 0;

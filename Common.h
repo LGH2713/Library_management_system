@@ -8,5 +8,4 @@ enum Type {
 
 static Type LoginType;
 
-
 #endif // COMMON_H
