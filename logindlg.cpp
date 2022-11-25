@@ -6,11 +6,20 @@ LoginDlg::LoginDlg(QWidget *parent) :
     ui(new Ui::LoginDlg)
 {
     ui->setupUi(this);
+    connect(ui->userLogin, SIGNAL(clicked(bool)), this, SLOT(buttonSignal()));
+    connect(ui->adminLogin, SIGNAL(clicked(bool)), this, SLOT(buttonSignal()));
 }
 
 LoginDlg::~LoginDlg()
 {
     delete ui;
 }
+
+void LoginDlg::buttonSignal()
+{
+    buttonName = qobject_cast<QPushButton *>(this->sender())->text();
+}
+
+
 
 

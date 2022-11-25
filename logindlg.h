@@ -15,6 +15,11 @@ public:
     explicit LoginDlg(QWidget *parent = nullptr);
     ~LoginDlg();
 
+    QString buttonName = "";
+
+public slots:
+    void buttonSignal();
+
 private:
     Ui::LoginDlg *ui;
 };
