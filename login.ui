@@ -188,14 +188,14 @@
           </spacer>
          </item>
          <item>
-          <widget class="QCheckBox" name="userCheckbox">
+          <widget class="QRadioButton" name="userRadio">
            <property name="text">
             <string>普通用户</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="adminCheckbox">
+          <widget class="QRadioButton" name="adminRadio">
            <property name="text">
             <string>管理员</string>
            </property>

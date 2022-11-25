@@ -20,12 +20,10 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        logindlg.cpp
-        logindlg.h
-        logindlg.ui
         login.cpp
         login.h
         login.ui
+        Common.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
