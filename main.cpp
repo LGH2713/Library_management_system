@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "login.h"
 #include "initialpage.h"
+#include "register.h"
 
 #include <QApplication>
 
@@ -12,23 +13,37 @@ int main(int argc, char *argv[])
 
     Login login;
     InitialPage initPage;
+    Register reg;
 
 
-    // 初始页 -> 登录页
+
+
+    // UI 控制流程
     if(initPage.exec() == QDialog::Accepted) {
-        login.show();
+        if(initPage.btnType == "userLogin")// 初始页 -> 登录页
+        {
+            login.show();
+            // 登录页 -> 主页
+            if(login.exec() == QDialog::Accepted && login.btnType == "loginBtn") {
+                w.show();
+                return a.exec();
+            }
+        }
+        else if(initPage.btnType == "userRegister") // 初始页 -> 注册页
+        {
+            reg.show();
+            // 注册页 -> 登录页
+            if(reg.exec() == QDialog::Accepted && reg.btnType == "registerBtn") {
+                login.show();
+                return a.exec();
+            }
+            else
+                return 0;
+        }
     }
-    else
-        return 0;
 
 
-    // 登录页 -> 主页
-    if(login.exec() == QDialog::Accepted) {
-        w.show();
-        return a.exec();
-    }
-    else
-        return 0;
+
     // w.show();
     // return a.exec();
 }

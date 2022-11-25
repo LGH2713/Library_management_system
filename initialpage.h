@@ -14,7 +14,7 @@ public:
     explicit InitialPage(QWidget *parent = nullptr);
     ~InitialPage();
 
-    QString featureName;
+    QString btnType;
 
 public slots:
     void featureSignal();

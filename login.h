@@ -17,6 +17,10 @@ public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
 
+    QString btnType;
+    QString username;
+    QString password;
+
     // 单选框
     QButtonGroup *groupRadio;
 

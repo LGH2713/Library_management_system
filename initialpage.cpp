@@ -17,6 +17,7 @@ InitialPage::~InitialPage()
 
 void InitialPage::featureSignal()
 {
-    featureName = qobject_cast<QPushButton *>(this->sender())->text();
-    qDebug() << "button name = " << featureName;
+    btnType = qobject_cast<QPushButton *>(this->sender())->objectName();
+    qDebug() << "button name = " << btnType;
+
 }

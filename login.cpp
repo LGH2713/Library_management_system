@@ -28,9 +28,10 @@ Login::~Login()
 
 void Login::loginSignal()
 {
-    QString username = ui->usename->text();
-    QString password = ui->password->text();
+    username = ui->usename->text();
+    password = ui->password->text();
     LoginType = ui->userRadio->isChecked() ? Type::User : Type::Admin;
+    btnType = qobject_cast<QPushButton *>(this->sender())->objectName();
 
     // ==================== test ==========================
     QString type = ui->userRadio->isChecked() ? "User" : "Admin";

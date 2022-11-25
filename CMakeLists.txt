@@ -27,6 +27,9 @@ set(PROJECT_SOURCES
         initialpage.cpp
         initialpage.h
         initialpage.ui
+        register.cpp
+        register.h
+        register.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
