@@ -30,6 +30,8 @@ set(PROJECT_SOURCES
         register.cpp
         register.h
         register.ui
+        book.cpp
+        book.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

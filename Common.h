@@ -6,6 +6,7 @@ enum Type {
     User,
     Admin,
 };
+static Type LoginType;
 
 // 图书类目
 enum Category {
@@ -31,7 +32,5 @@ enum Category {
 
 
 };
-
-static Type LoginType;
 
 #endif // COMMON_H
