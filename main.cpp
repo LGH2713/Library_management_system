@@ -1,9 +1,10 @@
-#include "mainwindow.h"
+//#include "mainwindow.h"
 #include "login.h"
 #include "initialpage.h"
 #include "register.h"
 #include "userinterface.h"
 #include "librarianinterface.h"
+#include "admininterface.h"
 
 #include <QApplication>
 
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
     Register reg;
     UserInterface userInterface;
     LibrarianInterface librarianInterface;
+    AdminInterface adminInterface;
 
     userInterface.setWindowTitle("图书管理系统");
 
@@ -33,6 +35,9 @@ int main(int argc, char *argv[])
                 }
                 else if (Common::LoginType == Type::Librarian) {
                     librarianInterface.show();
+                }
+                else {
+                    adminInterface.show();
                 }
             }
         }

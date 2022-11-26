@@ -6,6 +6,8 @@ LibrarianInterface::LibrarianInterface(QWidget *parent) :
     ui(new Ui::LibrarianInterface)
 {
     ui->setupUi(this);
+    // 设置标题不可编辑
+    ui->librarianTitle->setEnabled(false);
 }
 
 LibrarianInterface::~LibrarianInterface()

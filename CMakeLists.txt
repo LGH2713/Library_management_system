@@ -39,6 +39,9 @@ set(PROJECT_SOURCES
         librarianinterface.cpp
         librarianinterface.h
         librarianinterface.ui
+        admininterface.cpp
+        admininterface.h
+        admininterface.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
