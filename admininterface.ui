@@ -18,21 +18,21 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>普通用户管理</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>图书管理员管理</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>页</string>
+        <string>修改密码</string>
        </attribute>
       </widget>
      </widget>

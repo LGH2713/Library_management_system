@@ -6,6 +6,7 @@ UserInterface::UserInterface(QWidget *parent) :
     ui(new Ui::UserInterface)
 {
     ui->setupUi(this);
+
 }
 
 UserInterface::~UserInterface()

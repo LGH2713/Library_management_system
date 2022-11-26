@@ -18,31 +18,31 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>图书信息</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>预约借书</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>页</string>
+        <string>还书预警</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
-        <string>页</string>
+        <string>公告查看</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
-        <string>页</string>
+        <string>个人信息</string>
        </attribute>
       </widget>
      </widget>
