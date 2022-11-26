@@ -25,6 +25,9 @@ public:
     QButtonGroup *groupRadio;
 
 
+
+
+
 public slots:
     // 登录按钮槽函数
     void loginSignal();
