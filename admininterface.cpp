@@ -6,8 +6,6 @@ AdminInterface::AdminInterface(QWidget *parent) :
     ui(new Ui::AdminInterface)
 {
     ui->setupUi(this);
-    // 设置标题不可编辑
-    ui->adminTitle->setEnabled(false);
 }
 
 AdminInterface::~AdminInterface()

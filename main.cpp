@@ -17,11 +17,16 @@ int main(int argc, char *argv[])
     Login login;
     InitialPage initPage;
     Register reg;
-    UserInterface userInterface;
-    LibrarianInterface librarianInterface;
-    AdminInterface adminInterface;
 
-    userInterface.setWindowTitle("图书管理系统");
+
+    UserInterface userInterface;
+    userInterface.setWindowTitle("用户界面");
+
+    LibrarianInterface librarianInterface;
+    librarianInterface.setWindowTitle("图书管理员界面");
+
+    AdminInterface adminInterface;
+    adminInterface.setWindowTitle("超级用户界面");
 
     // UI 控制流程
     if(initPage.exec() == QDialog::Accepted) {
