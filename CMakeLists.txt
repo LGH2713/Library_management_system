@@ -24,6 +24,7 @@ set(PROJECT_SOURCES
         login.h
         login.ui
         Common.h
+        Common.cpp
         initialpage.cpp
         initialpage.h
         initialpage.ui
@@ -35,6 +36,9 @@ set(PROJECT_SOURCES
         userinterface.cpp
         userinterface.h
         userinterface.ui
+        librarianinterface.cpp
+        librarianinterface.h
+        librarianinterface.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -1,7 +1,5 @@
 #include "login.h"
 #include "ui_login.h"
-#include "Common.h"
-#include "userinterface.h"
 
 
 Login::Login(QWidget *parent) :
@@ -9,9 +7,6 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-
-    // 用户界面
-    UserInterface userInterface;
 
     // 设置标题文本框不可编辑
     ui->loginTitle->setEnabled(false);
@@ -38,7 +33,7 @@ void Login::loginSignal()
 {
     username = ui->usename->text();
     password = ui->password->text();
-    LoginType = ui->userRadio->isChecked() ? Type::User : Type::Admin;
+    Common::LoginType = ui->userRadio->isChecked() ? Type::User : Type::Admin;
     btnType = qobject_cast<QPushButton *>(this->sender())->objectName();
 
     // ==================== test ==========================

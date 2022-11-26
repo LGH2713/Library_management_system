@@ -6,7 +6,12 @@ enum Type {
     User,
     Admin,
 };
-static Type LoginType;
+
+class Common {
+public:
+    static Type LoginType;
+};
+
 
 // 图书类目
 enum Category {

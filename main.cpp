@@ -3,6 +3,7 @@
 #include "initialpage.h"
 #include "register.h"
 #include "userinterface.h"
+#include "librarianinterface.h"
 
 #include <QApplication>
 
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
     InitialPage initPage;
     Register reg;
     UserInterface userInterface;
+    LibrarianInterface librarianInterface;
 
     userInterface.setWindowTitle("图书管理系统");
 
@@ -26,13 +28,21 @@ int main(int argc, char *argv[])
             login.show();
             // 登录页 -> 主页
             if(login.exec() == QDialog::Accepted && login.btnType == "loginBtn") {
-                userInterface.show();
+                auto temp = Common::LoginType == Type::User ? "User" : "Admin";
+                qDebug() << "type = " << temp;
+                if(Common::LoginType == Type::User){
+                    userInterface.show();
+                }
+                else{
+                    librarianInterface.show();
+                }
                 return a.exec();
             }
         }
         else if(initPage.btnType == "userRegister") // 初始页 -> 注册页
         {
             reg.show();
+            a.exec();
             // 注册页 -> 登录页
             if(reg.exec() == QDialog::Accepted && reg.btnType == "registerBtn") {
                 login.show();
