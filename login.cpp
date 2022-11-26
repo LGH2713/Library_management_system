@@ -33,7 +33,11 @@ void Login::loginSignal()
 {
     username = ui->usename->text();
     password = ui->password->text();
-    Common::LoginType = ui->userRadio->isChecked() ? Type::User : Type::Admin;
+
+    Common::LoginType = ui->userRadio->isChecked() ? Type::User : Type::Librarian;
+    if(username == "root")
+        Common::LoginType = Type::Admin;
+
     btnType = qobject_cast<QPushButton *>(this->sender())->objectName();
 
     // ==================== test ==========================

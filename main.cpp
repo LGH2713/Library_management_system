@@ -28,15 +28,12 @@ int main(int argc, char *argv[])
             login.show();
             // 登录页 -> 主页
             if(login.exec() == QDialog::Accepted && login.btnType == "loginBtn") {
-                auto temp = Common::LoginType == Type::User ? "User" : "Admin";
-                qDebug() << "type = " << temp;
-                if(Common::LoginType == Type::User){
+                if(Common::LoginType == Type::User) {
                     userInterface.show();
                 }
-                else{
+                else if (Common::LoginType == Type::Librarian) {
                     librarianInterface.show();
                 }
-                return a.exec();
             }
         }
         else if(initPage.btnType == "userRegister") // 初始页 -> 注册页
@@ -56,4 +53,5 @@ int main(int argc, char *argv[])
                 return 0;
         }
     }
+    return a.exec();
 }

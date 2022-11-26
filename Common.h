@@ -4,6 +4,7 @@
 // 用户类型
 enum Type {
     User,
+    Librarian,
     Admin,
 };
 
