@@ -17,7 +17,7 @@ public:
 
 private:
     Ui::LibrarianInterface *ui;
-    void createItem();
+    QString stringItemList;
 };
 
 #endif // LIBRARIANINTERFACE_H
