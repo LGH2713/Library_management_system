@@ -20,7 +20,7 @@
       <property name="currentIndex">
        <number>2</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="userManagement">
        <attribute name="title">
         <string>普通用户管理</string>
        </attribute>
@@ -33,11 +33,11 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="listWidget"/>
+         <widget class="QListWidget" name="userList"/>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="librarianManagement">
        <attribute name="title">
         <string>图书管理员管理</string>
        </attribute>
@@ -50,11 +50,11 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="listWidget_2"/>
+         <widget class="QListWidget" name="librarianList"/>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_3">
+      <widget class="QWidget" name="modifyRootPassword">
        <attribute name="title">
         <string>修改密码</string>
        </attribute>
@@ -84,7 +84,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit"/>
+             <widget class="QLineEdit" name="oldPasswordInout"/>
             </item>
            </layout>
           </item>
@@ -98,7 +98,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_2"/>
+             <widget class="QLineEdit" name="newPasswordInput"/>
             </item>
            </layout>
           </item>
@@ -118,7 +118,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="confirmBtn">
               <property name="text">
                <string>确认修改</string>
               </property>

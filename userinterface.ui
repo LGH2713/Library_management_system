@@ -15,12 +15,12 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>1</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="bookInfo">
        <attribute name="title">
         <string>图书信息</string>
        </attribute>
@@ -30,7 +30,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_28">
             <item>
-             <widget class="QLineEdit" name="lineEdit_8">
+             <widget class="QLineEdit" name="bookSearchInput">
               <property name="font">
                <font>
                 <pointsize>14</pointsize>
@@ -42,7 +42,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="bookSearchBtn">
               <property name="text">
                <string>查询</string>
               </property>
@@ -73,21 +73,21 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton">
+             <widget class="QRadioButton" name="isbnRadio">
               <property name="text">
                <string>ISBN号</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_2">
+             <widget class="QRadioButton" name="bookNameRadio">
               <property name="text">
                <string>书名</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_3">
+             <widget class="QRadioButton" name="authorRadio">
               <property name="text">
                <string>作者</string>
               </property>
@@ -111,11 +111,11 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="listWidget"/>
+         <widget class="QListWidget" name="bookList"/>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="bookOrder">
        <attribute name="title">
         <string>预约借书</string>
        </attribute>
@@ -123,14 +123,19 @@
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="orderSearch">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
+            </property>
             <property name="placeholderText">
              <string>请输入ISBN号查询...</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="orderSearchBtn">
             <property name="text">
              <string>查询</string>
             </property>
@@ -152,7 +157,7 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="listWidget_2"/>
+         <widget class="QListWidget" name="orderList"/>
         </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -180,7 +185,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_3">
+      <widget class="QWidget" name="returnWarning">
        <attribute name="title">
         <string>还书预警</string>
        </attribute>
@@ -193,11 +198,11 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="listWidget_3"/>
+         <widget class="QListWidget" name="warningList"/>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_4">
+      <widget class="QWidget" name="announcement">
        <attribute name="title">
         <string>公告查看</string>
        </attribute>
@@ -210,11 +215,11 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QTextEdit" name="textEdit"/>
+         <widget class="QTextEdit" name="announcementContent"/>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_5">
+      <widget class="QWidget" name="userInfo">
        <attribute name="title">
         <string>个人信息</string>
        </attribute>
@@ -257,7 +262,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_2"/>
+             <widget class="QLineEdit" name="userId"/>
             </item>
            </layout>
           </item>
@@ -284,7 +289,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_3"/>
+             <widget class="QLineEdit" name="userName"/>
             </item>
            </layout>
           </item>
@@ -311,7 +316,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_5"/>
+             <widget class="QLineEdit" name="userPassword"/>
             </item>
            </layout>
           </item>
@@ -338,7 +343,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_6"/>
+             <widget class="QLineEdit" name="userMail"/>
             </item>
            </layout>
           </item>
@@ -365,14 +370,14 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_4">
+             <widget class="QRadioButton" name="maleRadio">
               <property name="text">
                <string>男</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_5">
+             <widget class="QRadioButton" name="femaleRadio">
               <property name="text">
                <string>女</string>
               </property>
@@ -422,7 +427,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="infoEditBtn">
               <property name="text">
                <string>修改</string>
               </property>

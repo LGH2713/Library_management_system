@@ -18,9 +18,9 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
-      <widget class="QWidget" name="tab_7">
+      <widget class="QWidget" name="searchBookInfo">
        <attribute name="title">
         <string>查询书籍</string>
        </attribute>
@@ -30,7 +30,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_28">
             <item>
-             <widget class="QLineEdit" name="lineEdit_8">
+             <widget class="QLineEdit" name="bookSearchInput">
               <property name="font">
                <font>
                 <pointsize>14</pointsize>
@@ -42,7 +42,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="bookSearchBtn">
               <property name="text">
                <string>查询</string>
               </property>
@@ -73,21 +73,21 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton">
+             <widget class="QRadioButton" name="isbnRadio">
               <property name="text">
                <string>ISBN号</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_2">
+             <widget class="QRadioButton" name="bookNameRadio">
               <property name="text">
                <string>书名</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_3">
+             <widget class="QRadioButton" name="authorRadio">
               <property name="text">
                <string>作者</string>
               </property>
@@ -111,11 +111,11 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="listWidget"/>
+         <widget class="QListWidget" name="bookInfoList"/>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="addBook">
        <attribute name="title">
         <string>添加书籍</string>
        </attribute>
@@ -147,7 +147,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit"/>
+               <widget class="QLineEdit" name="addISBN"/>
               </item>
              </layout>
             </item>
@@ -174,7 +174,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_2"/>
+               <widget class="QLineEdit" name="addBookName"/>
               </item>
              </layout>
             </item>
@@ -201,7 +201,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_3"/>
+               <widget class="QLineEdit" name="addAuthor"/>
               </item>
              </layout>
             </item>
@@ -228,7 +228,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_4"/>
+               <widget class="QLineEdit" name="shelfLife"/>
               </item>
              </layout>
             </item>
@@ -255,7 +255,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_5"/>
+               <widget class="QLineEdit" name="addPrice"/>
               </item>
              </layout>
             </item>
@@ -282,7 +282,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_6"/>
+               <widget class="QLineEdit" name="addCategory"/>
               </item>
              </layout>
             </item>
@@ -309,7 +309,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_7"/>
+               <widget class="QLineEdit" name="addPress"/>
               </item>
              </layout>
             </item>
@@ -344,7 +344,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="addBookBtn">
               <property name="text">
                <string>添加</string>
               </property>
@@ -364,7 +364,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="bookInfoClear">
               <property name="text">
                <string>清空</string>
               </property>
@@ -415,7 +415,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="deleteBook">
        <attribute name="title">
         <string>删除书籍</string>
        </attribute>
@@ -423,7 +423,7 @@
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_10">
           <item>
-           <widget class="QLineEdit" name="lineEdit_9">
+           <widget class="QLineEdit" name="deleteSearchInput">
             <property name="font">
              <font>
               <pointsize>14</pointsize>
@@ -435,7 +435,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="deleteSearchBtn">
             <property name="text">
              <string>查询</string>
             </property>
@@ -457,7 +457,7 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="listWidget_2"/>
+         <widget class="QListWidget" name="deleteBookList"/>
         </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -475,7 +475,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="deleteBtn">
+           <widget class="QPushButton" name="deleteBookBtn">
             <property name="text">
              <string>删除</string>
             </property>
@@ -485,7 +485,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_3">
+      <widget class="QWidget" name="modifyBookInfo">
        <property name="minimumSize">
         <size>
          <width>774</width>
@@ -499,7 +499,7 @@
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_12">
           <item>
-           <widget class="QLineEdit" name="lineEdit_10">
+           <widget class="QLineEdit" name="modifySearchInput">
             <property name="font">
              <font>
               <pointsize>14</pointsize>
@@ -511,7 +511,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="modifySearchBtn">
             <property name="text">
              <string>查询</string>
             </property>
@@ -574,7 +574,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_11"/>
+                 <widget class="QLineEdit" name="modifyISBN"/>
                 </item>
                </layout>
               </item>
@@ -601,7 +601,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_12"/>
+                 <widget class="QLineEdit" name="modifyBookName"/>
                 </item>
                </layout>
               </item>
@@ -628,7 +628,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_13"/>
+                 <widget class="QLineEdit" name="modifyAuthor"/>
                 </item>
                </layout>
               </item>
@@ -655,7 +655,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_14"/>
+                 <widget class="QLineEdit" name="modifyShelfLife"/>
                 </item>
                </layout>
               </item>
@@ -682,7 +682,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_15"/>
+                 <widget class="QLineEdit" name="modifyPrice"/>
                 </item>
                </layout>
               </item>
@@ -709,7 +709,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_16"/>
+                 <widget class="QLineEdit" name="modifyCategory"/>
                 </item>
                </layout>
               </item>
@@ -736,7 +736,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_17"/>
+                 <widget class="QLineEdit" name="modifyPress"/>
                 </item>
                </layout>
               </item>
@@ -763,7 +763,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit_18"/>
+                 <widget class="QLineEdit" name="modifyLoanStatus"/>
                 </item>
                </layout>
               </item>
@@ -798,7 +798,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_6">
+               <widget class="QPushButton" name="modifyBookBtn">
                 <property name="text">
                  <string>修改</string>
                 </property>
@@ -825,7 +825,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_4">
+      <widget class="QWidget" name="announcementPublish">
        <attribute name="title">
         <string>发布公告</string>
        </attribute>
@@ -844,7 +844,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_23"/>
+               <widget class="QLineEdit" name="publishTime"/>
               </item>
              </layout>
             </item>
@@ -856,7 +856,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_24"/>
+             <widget class="QLineEdit" name="publisherName"/>
             </item>
             <item>
              <spacer name="horizontalSpacer_18">
@@ -876,7 +876,7 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QPlainTextEdit" name="plainTextEdit">
+         <widget class="QPlainTextEdit" name="announcementContent">
           <property name="font">
            <font>
             <pointsize>12</pointsize>
@@ -903,7 +903,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_5">
+           <widget class="QPushButton" name="publishBtn">
             <property name="text">
              <string>公告发布</string>
             </property>
@@ -913,7 +913,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_5">
+      <widget class="QWidget" name="exceptionPunish">
        <attribute name="title">
         <string>异常还书处罚</string>
        </attribute>
@@ -928,13 +928,13 @@
            </widget>
           </item>
           <item>
-           <widget class="QListWidget" name="listWidget_3"/>
+           <widget class="QListWidget" name="exceptionList"/>
           </item>
          </layout>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_6">
+      <widget class="QWidget" name="modifyLibrarianInfo">
        <attribute name="title">
         <string>个人信息</string>
        </attribute>
@@ -977,7 +977,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_22"/>
+             <widget class="QLineEdit" name="librarianId"/>
             </item>
            </layout>
           </item>
@@ -1004,7 +1004,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_19"/>
+             <widget class="QLineEdit" name="librarianName"/>
             </item>
            </layout>
           </item>
@@ -1031,7 +1031,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_20"/>
+             <widget class="QLineEdit" name="librarianMail"/>
             </item>
            </layout>
           </item>
@@ -1058,7 +1058,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_21"/>
+             <widget class="QLineEdit" name="librarianPassword"/>
             </item>
            </layout>
           </item>
@@ -1091,7 +1091,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="editInfoBtn">
               <property name="text">
                <string>修改</string>
               </property>
