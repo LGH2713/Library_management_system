@@ -6,6 +6,8 @@ LibrarianInterface::LibrarianInterface(QWidget *parent) :
     ui(new Ui::LibrarianInterface)
 {
     ui->setupUi(this);
+    QListWidgetItem *listItem = new QListWidgetItem("hello");
+    ui->bookInfoList->addItem(listItem);
 }
 
 LibrarianInterface::~LibrarianInterface()
@@ -15,6 +17,5 @@ LibrarianInterface::~LibrarianInterface()
 
 void LibrarianInterface::createItem()
 {
-    QListWidgetItem *listItem = new QListWidgetItem("hello");
-    listItem->
+
 }

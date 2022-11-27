@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="userManagement">
        <attribute name="title">
@@ -33,7 +33,7 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QListView" name="listView"/>
+         <widget class="QListWidget" name="userList"/>
         </item>
        </layout>
       </widget>
@@ -42,15 +42,15 @@
         <string>图书管理员管理</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
+        <item row="1" column="0">
+         <widget class="QListWidget" name="librarianList"/>
+        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_4">
           <property name="text">
            <string>图书管理员列表：</string>
           </property>
          </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QListView" name="listView_2"/>
         </item>
        </layout>
       </widget>
