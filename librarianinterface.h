@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::LibrarianInterface *ui;
+    void createItem();
 };
 
 #endif // LIBRARIANINTERFACE_H

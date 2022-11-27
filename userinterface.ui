@@ -18,7 +18,7 @@
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="bookInfo">
        <attribute name="title">
@@ -111,7 +111,7 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="bookList"/>
+         <widget class="QListView" name="bookList"/>
         </item>
        </layout>
       </widget>
@@ -157,7 +157,7 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="orderList"/>
+         <widget class="QListView" name="orderList"/>
         </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -198,7 +198,7 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="warningList"/>
+         <widget class="QListView" name="listView"/>
         </item>
        </layout>
       </widget>

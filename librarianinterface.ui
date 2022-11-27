@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="searchBookInfo">
        <attribute name="title">
@@ -111,7 +111,7 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="bookInfoList"/>
+         <widget class="QListView" name="bookInfoList"/>
         </item>
        </layout>
       </widget>
@@ -457,7 +457,7 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="deleteBookList"/>
+         <widget class="QListView" name="listView"/>
         </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -919,18 +919,14 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
-         <layout class="QVBoxLayout" name="verticalLayout_8">
-          <item>
-           <widget class="QLabel" name="label_17">
-            <property name="text">
-             <string>还书异常列表：</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QListWidget" name="exceptionList"/>
-          </item>
-         </layout>
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>还书异常列表：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QListView" name="listView_2"/>
         </item>
        </layout>
       </widget>

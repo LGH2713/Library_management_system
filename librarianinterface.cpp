@@ -6,10 +6,15 @@ LibrarianInterface::LibrarianInterface(QWidget *parent) :
     ui(new Ui::LibrarianInterface)
 {
     ui->setupUi(this);
-
 }
 
 LibrarianInterface::~LibrarianInterface()
 {
     delete ui;
+}
+
+void LibrarianInterface::createItem()
+{
+    QListWidgetItem *listItem = new QListWidgetItem("hello");
+    listItem->
 }

@@ -33,7 +33,7 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="userList"/>
+         <widget class="QListView" name="listView"/>
         </item>
        </layout>
       </widget>
@@ -50,7 +50,7 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="librarianList"/>
+         <widget class="QListView" name="listView_2"/>
         </item>
        </layout>
       </widget>
