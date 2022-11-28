@@ -57,7 +57,7 @@
       </spacer>
      </item>
      <item row="4" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <layout class="QHBoxLayout" name="sexBox">
        <item>
         <widget class="QLabel" name="label_4">
          <property name="text">

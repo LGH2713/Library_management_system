@@ -35,6 +35,7 @@ enum Category {
     Transportation,                 // 交通运输
     Aerospace,                      // 航空航天
     EnvironmentScience,             // 环境科学
+    ScienceFiction,                  // 科幻
     Comprehensive,                  // 综合
 
 

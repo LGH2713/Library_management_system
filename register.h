@@ -36,6 +36,11 @@ public:
 public slots:
     void registerSignal();
 
+private slots:
+    void on_userRadio_clicked();
+
+    void on_librarianRadio_clicked();
+
 private:
     Ui::Register *ui;
     QSqlDatabase *dbconn; // 数据库连接

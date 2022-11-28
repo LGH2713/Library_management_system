@@ -31,6 +31,7 @@ void Register::setDbconn(QSqlDatabase *dbconn)
 
 void Register::registerSignal()
 {
+    // 获取输入信息
     username = ui->username->text();
     password = ui->password->text();
     mail = ui->mail->text();
@@ -44,8 +45,8 @@ void Register::registerSignal()
     // 根据不同的注册类型创建sql语句
     if(Common::RegisterType == Type::User && inputCheck())
         sqlStr = QString("INSERT INTO user (u_name, u_sex, u_password, u_mail) VALUES ('" + username +"', '" + sexType + "', '" + password + "', '" + mail + "')");
-    else
-        sqlStr = QString("INSERT INTO librarian (l_name, l_sex, l_password, l_mail) VALUES ('" + username +"', '" + sexType + "', '" + password + "', '" + mail + "')");
+    else if(Common::RegisterType == Type::Librarian && inputCheck())
+        sqlStr = QString("INSERT INTO librarian (l_name, l_password, l_mail) VALUES ('" + username + "', '" + password + "', '" + mail + "')");
 
     // 执行sql
     dbconn->open();
@@ -53,6 +54,7 @@ void Register::registerSignal()
     dbconn->close();
 }
 
+// 检查输入信息
 bool Register::inputCheck()
 {
     if(username == nullptr || password == nullptr || mail == nullptr)
@@ -60,3 +62,24 @@ bool Register::inputCheck()
     return true;
 
 }
+
+// 显示性别单选框
+void Register::on_userRadio_clicked()
+{
+    for(int i = 0; i < ui->sexBox->count(); ++i) {
+        QWidget *w = ui->sexBox->itemAt(i)->widget();
+        if(w != nullptr)
+            w->setVisible(true);
+    }
+}
+
+// 隐藏性别单选框
+void Register::on_librarianRadio_clicked()
+{
+    for(int i = 0; i < ui->sexBox->count(); ++i) {
+        QWidget *w = ui->sexBox->itemAt(i)->widget();
+        if(w != nullptr)
+            w->setVisible(false);
+    }
+}
+
