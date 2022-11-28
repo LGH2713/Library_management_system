@@ -8,6 +8,13 @@ UserInterface::UserInterface(QWidget *parent) :
     ui->setupUi(this);
     dataList = new QStringList;
     model = new QSqlQueryModel;
+
+    ui->bookList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->bookList->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->bookList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    QHeaderView *headerView = ui->bookList->horizontalHeader();
+    headerView->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 UserInterface::~UserInterface()
@@ -18,25 +25,20 @@ UserInterface::~UserInterface()
 
 void UserInterface::pullBookInfoList()
 {
-    qDebug() << "start";
-    qDebug() << "end";
-    model->setQuery(QString("select * from book"));
+    QString sqlStr = QString("select %1, %2, %3, %4, %5 from book").arg("isbn", "b_name", "author", "category", "press");
+    model->setQuery(sqlStr);
     QModelIndex item_index = model->index(0, 0);
     qDebug() << model->data(item_index).toString();
 
     for(int i = 0; i < model->rowCount(); i++) {
-        QString item = "";
+        ui->bookList->insertRow(ui->bookList->rowCount());
         for(int j = 0; j < model->columnCount(); j++) {
             QModelIndex item_index = model->index(i, j);
-            item += model->data(item_index).toString() + "\t\t";
+            ui->bookList->setItem(i, j, new QTableWidgetItem(model->data(item_index).toString()));
+            ui->bookList->item(i, j)->setTextAlignment(Qt::AlignCenter);
         }
-        qDebug() << item;
-        dataList->append(item);
     }
 
-
-
-     ui->bookList->addItems(*dataList);
 }
 
 void UserInterface::on_pullAll_clicked()
