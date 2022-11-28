@@ -1,5 +1,6 @@
 #include "register.h"
 #include "ui_register.h"
+#include <QSqlQueryModel>
 
 Register::Register(QWidget *parent) :
     QDialog(parent),
@@ -33,4 +34,9 @@ void Register::registerSignal()
     mail = ui->mail->text();
     sex = ui->maleRadio->isChecked() ? Sex::male : Sex::female;
     btnType = qobject_cast<QPushButton *>(this->sender())->objectName();
+
+//    QSqlQueryModel *model = new QSqlQueryModel;
+//    QString sqlStr;
+//    IF()
+//    model->setQuery();
 }
