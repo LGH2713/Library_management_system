@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 
     InitialPage initPage; // 初始页
     Register reg; // 注册页
+    reg.setDbconn(&db.dbconn);
 
     // UI 控制流程
     if(initPage.exec() == QDialog::Accepted) {

@@ -11,6 +11,7 @@ enum Type {
 class Common {
 public:
     static Type LoginType;
+    static Type RegisterType;
 };
 
 

@@ -39,6 +39,7 @@ public slots:
 private:
     Ui::Register *ui;
     QSqlDatabase *dbconn; // 数据库连接
+    bool inputCheck(); // 输入数据检测
 };
 
 #endif // REGISTER_H
