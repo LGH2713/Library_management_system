@@ -20,7 +20,6 @@ class Login : public QDialog
 public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
-    void setDbconn(QSqlDatabase *dbconn); // 设置数据库连接
     bool check();
 
     QString btnType; // 按钮类型
@@ -36,9 +35,9 @@ public slots:
 private:
     Ui::Login *ui;
     QSqlDatabase *dbconn;// 数据库连接
-    UserInterface userInterface;
-    LibrarianInterface librarianInterface;
-    AdminInterface adminInterface;
+    UserInterface *userInterface;
+    LibrarianInterface *librarianInterface;
+    AdminInterface *adminInterface;
 };
 
 #endif // LOGIN_H

@@ -19,14 +19,14 @@ Login::Login(QWidget *parent) :
     groupRadio->addButton(ui->adminRadio);
     ui->userRadio->setChecked(true);
 
-    librarianInterface.setWindowTitle("图书管理员界面");
-    librarianInterface.setDbconn(dbconn);
+    userInterface = new UserInterface;
+    userInterface->setWindowTitle("用户界面");
 
-    userInterface.setWindowTitle("用户界面");
-    userInterface.setDbconn(dbconn);
+    librarianInterface = new LibrarianInterface;
+    librarianInterface->setWindowTitle("图书管理员界面");
 
-    adminInterface.setWindowTitle("超级用户界面");
-    adminInterface.setDbconn(dbconn);
+    adminInterface = new AdminInterface;
+    adminInterface->setWindowTitle("超级用户界面");
 
     // 连接登录信号和槽
     connect(ui->loginBtn, SIGNAL(clicked(bool)), this, SLOT(loginSignal()));
@@ -35,12 +35,9 @@ Login::Login(QWidget *parent) :
 Login::~Login()
 {
     delete ui;
-}
-
-void Login::setDbconn(QSqlDatabase *dbconn)
-{
-    this->dbconn = dbconn;
-    qDebug() << "connecting...";
+    delete userInterface;
+    delete librarianInterface;
+    delete adminInterface;
 }
 
 bool Login::check()
@@ -49,7 +46,6 @@ bool Login::check()
     username = ui->usename->text();
     password = ui->password->text();
 
-    dbconn->open();
 
     Common::LoginType = ui->userRadio->isChecked() ? Type::User : Type::Librarian;
     if(username == "root") {
@@ -58,12 +54,10 @@ bool Login::check()
         model_name->setQuery(QString("select a_password from admin"));
         QModelIndex index_passwd = model_name->index(0, 0);
         if(password == model_name->data(index_passwd).toString()) {
-            dbconn->close();
             return true;
         }
     }
 
-    dbconn->close();
     return false;
 }
 
@@ -73,7 +67,6 @@ void Login::loginSignal()
     username = ui->usename->text();
     password = ui->password->text();
 
-    dbconn->open();
     QSqlQueryModel *model = new QSqlQueryModel;
     Common::LoginType = ui->userRadio->isChecked() ? Type::User : Type::Librarian;
 
@@ -83,9 +76,8 @@ void Login::loginSignal()
         model->setQuery(QString("select a_password from admin"));
         QModelIndex index_passwd = model->index(0, 0);
         if(password == model->data(index_passwd).toString()) {
-            adminInterface.show();
+            adminInterface->show();
         } else {
-            dbconn->close();
             QMessageBox::critical(this, tr("登录失败"), tr("密码输入错误！"), QMessageBox::Cancel);
         }
     } else {
@@ -96,9 +88,8 @@ void Login::loginSignal()
             QString resultPasswd = model->data(index_passwd).toString();
             qDebug() << "password = " << password << " " << "resultPasswd = " << resultPasswd;
             if(password == resultPasswd && resultPasswd != nullptr) {
-                userInterface.show();
+                userInterface->show();
             } else {
-                dbconn->close();
                 QMessageBox::critical(this, tr("登录失败"), tr("用户名或密码输入错误！"), QMessageBox::Cancel);
             }
         }
@@ -108,9 +99,8 @@ void Login::loginSignal()
             QModelIndex index_passwd = model->index(0, 0);
             QString resultPasswd = model->data(index_passwd).toString();
             if(password == resultPasswd && resultPasswd != nullptr) {
-                librarianInterface.show();
+                librarianInterface->show();
             }else {
-                dbconn->close();
                 QMessageBox::critical(this, tr("登录失败"), tr("用户名或密码输入错误！"), QMessageBox::Cancel);
             }
         }

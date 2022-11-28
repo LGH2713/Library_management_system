@@ -8,14 +8,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Database db;
-
-    InitialPage initPage; // 初始页
-    Register reg; // 注册页
-    reg.setDbconn(&db.dbconn);
 
     Login login;// 登录页
-    login.setDbconn(&db.dbconn);
+    InitialPage initPage; // 初始页
+    Register reg; // 注册页
 
     // UI 控制流程
     if(initPage.exec() == QDialog::Accepted) {

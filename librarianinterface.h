@@ -15,7 +15,6 @@ class LibrarianInterface : public QMainWindow
 public:
     explicit LibrarianInterface(QWidget *parent = nullptr);
     ~LibrarianInterface();
-    void setDbconn(QSqlDatabase *dbconn); // 设置数据库连接
 
 private:
     Ui::LibrarianInterface *ui;

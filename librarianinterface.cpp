@@ -18,9 +18,5 @@ LibrarianInterface::~LibrarianInterface()
     delete ui;
 }
 
-void LibrarianInterface::setDbconn(QSqlDatabase *dbconn)
-{
-    this->dbconn = dbconn;
-}
 
 

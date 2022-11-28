@@ -16,10 +16,14 @@ Database::Database()
     dbconn.setPort(port);
 
     qDebug("database open status: %d\n", dbconn.open());
-    dbconn.close();
 
     qDebug() << "链接库：";
     QStringList drivers = QSqlDatabase::drivers();
     foreach(QString driver,drivers)
         qDebug() << driver;
+}
+
+Database::~Database()
+{
+    dbconn.close();
 }

@@ -11,6 +11,7 @@ class Database
 {
 public:
     Database();
+    ~Database();
 
     QSqlDatabase dbconn;
 

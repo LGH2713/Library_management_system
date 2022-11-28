@@ -1,5 +1,6 @@
 #ifndef COMMON_H
 #define COMMON_H
+#include "database.h"
 
 // 用户类型
 enum Type {
@@ -12,6 +13,7 @@ class Common {
 public:
     static Type LoginType;
     static Type RegisterType;
+    static Database db;
 };
 
 

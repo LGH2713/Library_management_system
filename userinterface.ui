@@ -49,6 +49,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="pullAll">
+              <property name="text">
+               <string>拉取所有书本信息</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="horizontalSpacer_16">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -73,13 +80,6 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="isbnRadio">
-              <property name="text">
-               <string>ISBN号</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QRadioButton" name="bookNameRadio">
               <property name="text">
                <string>书名</string>
@@ -90,6 +90,13 @@
              <widget class="QRadioButton" name="authorRadio">
               <property name="text">
                <string>作者</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="isbnRadio">
+              <property name="text">
+               <string>ISBN号</string>
               </property>
              </widget>
             </item>
@@ -111,7 +118,13 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QListWidget" name="bookList"/>
+         <widget class="QListWidget" name="bookList">
+          <item>
+           <property name="text">
+            <string>test</string>
+           </property>
+          </item>
+         </widget>
         </item>
        </layout>
       </widget>

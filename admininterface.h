@@ -15,7 +15,6 @@ class AdminInterface : public QMainWindow
 public:
     explicit AdminInterface(QWidget *parent = nullptr);
     ~AdminInterface();
-    void setDbconn(QSqlDatabase *dbconn); // 设置数据库连接
 
 private:
     Ui::AdminInterface *ui;

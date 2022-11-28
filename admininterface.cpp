@@ -13,7 +13,3 @@ AdminInterface::~AdminInterface()
     delete ui;
 }
 
-void AdminInterface::setDbconn(QSqlDatabase *dbconn)
-{
-    this->dbconn = dbconn;
-}
