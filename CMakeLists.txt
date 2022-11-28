@@ -17,9 +17,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED Sql)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
         login.cpp
         login.h
         login.ui
@@ -42,6 +39,8 @@ set(PROJECT_SOURCES
         admininterface.cpp
         admininterface.h
         admininterface.ui
+        database.cpp
+        database.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -1,54 +1,26 @@
-//#include "mainwindow.h"
+#include "database.h"
 #include "login.h"
 #include "initialpage.h"
 #include "register.h"
-#include "userinterface.h"
-#include "librarianinterface.h"
-#include "admininterface.h"
-#include "Common.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    // MainWindow w;
-    // w.setWindowTitle("图书管理系统");
+
+    Database db;
 
     Login login;
-    InitialPage initPage;
-    Register reg;
+    login.setDbconn(&db.dbconn);
 
-
-    UserInterface userInterface;
-    userInterface.setWindowTitle("用户界面");
-
-    LibrarianInterface librarianInterface;
-    librarianInterface.setWindowTitle("图书管理员界面");
-
-    AdminInterface adminInterface;
-    adminInterface.setWindowTitle("超级用户界面");
-
-    auto loginContorl = [&](Login *login) {
-        if(login->exec() == QDialog::Accepted && login->btnType == "loginBtn") {
-            if(Common::LoginType == Type::User) {
-                userInterface.show();
-            }
-            else if (Common::LoginType == Type::Librarian) {
-                librarianInterface.show();
-            }
-            else {
-                adminInterface.show();
-            }
-        }
-    };
+    InitialPage initPage; // 初始页
+    Register reg; // 注册页
 
     // UI 控制流程
     if(initPage.exec() == QDialog::Accepted) {
         if(initPage.btnType == "userLogin")// 初始页 -> 登录页
         {
             login.show();
-            // 登录页 -> 主页
-            loginContorl(&login);
         }
         else if(initPage.btnType == "userRegister") // 初始页 -> 注册页
         {
@@ -56,7 +28,6 @@ int main(int argc, char *argv[])
             // 注册页 -> 登录页
             if(reg.exec() == QDialog::Accepted && reg.btnType == "registerBtn") {
                 login.show();
-                loginContorl(&login);
             }
             else
                 return 0;

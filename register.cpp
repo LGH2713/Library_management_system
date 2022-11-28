@@ -21,6 +21,11 @@ Register::~Register()
     delete ui;
 }
 
+void Register::setDbconn(QSqlDatabase *dbconn)
+{
+    this->dbconn = dbconn;
+}
+
 void Register::registerSignal()
 {
     username = ui->username->text();

@@ -3,6 +3,10 @@
 
 #include <QDialog>
 #include <QButtonGroup>
+#include <QSqlDatabase>
+#include "userinterface.h"
+#include "librarianinterface.h"
+#include "admininterface.h"
 
 
 namespace Ui {
@@ -16,16 +20,13 @@ class Login : public QDialog
 public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
+    void setDbconn(QSqlDatabase *dbconn); // 设置数据库连接
+    bool check();
 
-    QString btnType;
-    QString username;
-    QString password;
-
-    // 单选框
-    QButtonGroup *groupRadio;
-
-
-
+    QString btnType; // 按钮类型
+    QString username; // 用户名
+    QString password; // 密码
+    QButtonGroup *groupRadio; // 角色单选框
 
 
 public slots:
@@ -34,9 +35,10 @@ public slots:
 
 private:
     Ui::Login *ui;
-
-    // 检验登录信息
-    bool check();
+    QSqlDatabase *dbconn;// 数据库连接
+    UserInterface userInterface;
+    LibrarianInterface librarianInterface;
+    AdminInterface adminInterface;
 };
 
 #endif // LOGIN_H

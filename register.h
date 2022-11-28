@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QButtonGroup>
+#include <QSqlDatabase>
 
 namespace Ui {
 class Register;
@@ -20,6 +21,7 @@ class Register : public QDialog
 public:
     explicit Register(QWidget *parent = nullptr);
     ~Register();
+    void setDbconn(QSqlDatabase *dbconn); // 设置数据库连接
 
     QString btnType;
     QString username;
@@ -36,6 +38,7 @@ public slots:
 
 private:
     Ui::Register *ui;
+    QSqlDatabase *dbconn; // 数据库连接
 };
 
 #endif // REGISTER_H

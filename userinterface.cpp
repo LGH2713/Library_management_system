@@ -13,3 +13,8 @@ UserInterface::~UserInterface()
 {
     delete ui;
 }
+
+void UserInterface::setDbconn(QSqlDatabase *dbconn)
+{
+    this->dbconn = dbconn;
+}
