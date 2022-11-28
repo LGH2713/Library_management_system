@@ -18,16 +18,13 @@
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="searchBookInfo">
        <attribute name="title">
         <string>查询书籍</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="1" column="0">
-         <widget class="QListWidget" name="bookInfoList"/>
-        </item>
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
@@ -112,6 +109,9 @@
            </layout>
           </item>
          </layout>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget"/>
         </item>
        </layout>
       </widget>
@@ -570,6 +570,9 @@
           </item>
          </layout>
         </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="deleteBookList"/>
+        </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_11">
           <item>
@@ -593,9 +596,6 @@
            </widget>
           </item>
          </layout>
-        </item>
-        <item row="1" column="0">
-         <widget class="QListWidget" name="deleteBookList"/>
         </item>
        </layout>
       </widget>
@@ -1033,18 +1033,14 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
-         <layout class="QVBoxLayout" name="verticalLayout_8">
-          <item>
-           <widget class="QLabel" name="label_17">
-            <property name="text">
-             <string>还书异常列表：</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QListWidget" name="exceptionList"/>
-          </item>
-         </layout>
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>还书异常列表：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_2"/>
         </item>
        </layout>
       </widget>
