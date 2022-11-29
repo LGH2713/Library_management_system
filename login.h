@@ -34,7 +34,6 @@ public slots:
 
 private:
     Ui::Login *ui;
-    QSqlDatabase *dbconn;// 数据库连接
     UserInterface *userInterface;
     LibrarianInterface *librarianInterface;
     AdminInterface *adminInterface;

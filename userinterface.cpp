@@ -6,7 +6,6 @@ UserInterface::UserInterface(QWidget *parent) :
     ui(new Ui::UserInterface)
 {
     ui->setupUi(this);
-    dataList = new QStringList;
     model = new QSqlQueryModel;
 
     // 设置列表不可编辑,只能选择一行
@@ -21,15 +20,12 @@ UserInterface::UserInterface(QWidget *parent) :
 UserInterface::~UserInterface()
 {
     delete ui;
-    delete[] dataList;
 }
 
 void UserInterface::pullBookInfoList()
 {
     QString sqlStr = QString("select %1, %2, %3, %4, %5 from book").arg("isbn", "b_name", "author", "category", "press");
     model->setQuery(sqlStr);
-    QModelIndex item_index = model->index(0, 0);
-    qDebug() << model->data(item_index).toString();
 
     // 填充数据
     for(int i = 0; i < model->rowCount(); i++) {

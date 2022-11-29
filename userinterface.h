@@ -26,7 +26,6 @@ private:
     Ui::UserInterface *ui;
     QSqlDatabase *dbconn; // 数据库连接
     QSqlQueryModel *model; // 数据库模型
-    QStringList *dataList;
 
 };
 
