@@ -1,5 +1,6 @@
 #include "userinterface.h"
 #include "ui_userinterface.h"
+#include <QMessageBox>
 
 UserInterface::UserInterface(QWidget *parent) :
     QMainWindow(parent),
@@ -7,6 +8,8 @@ UserInterface::UserInterface(QWidget *parent) :
 {
     ui->setupUi(this);
     model = new QSqlQueryModel;
+
+    ui->maleRadio->setChecked(true);
 
     // 设置列表不可编辑,只能选择一行,表头自适应
     ui->bookList->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -50,12 +53,23 @@ void UserInterface::pullBookInfoList()
 
 bool UserInterface::checkInput()
 {
-    return false;
+    return true;
 }
 
 void UserInterface::modifyUserInfo()
 {
+    QString name = ui->userName->text();
+    QString passwd = ui->userPassword->text();
+    QString mail = ui->userMail->text();
+    QString sex = ui->maleRadio->isChecked() ? "mele" : "female";
 
+    if(checkInput()) {
+        QString sqlStr = QString("update user set u_name = '%1', u_password = '%2', u_mail = '%3', u_sex = '%4' where u_id = '%5'")
+                .arg(name, passwd, mail, sex, userID);
+        model->setQuery(sqlStr);
+        getUserInfo();
+        QMessageBox::information(this, "修改信息", "修改成功", QMessageBox::Ok);
+    }
 }
 
 void UserInterface::getUserInfo()
@@ -77,11 +91,17 @@ void UserInterface::getUserInfo()
 
     index = model->index(0, 4);
     QString sex = model->data(index).toString();
-    ui->maleRadio->setCheckable(sex == "male");
+    ui->maleRadio->setChecked(sex == "male");
 }
 
 void UserInterface::on_tabWidget_tabBarClicked(int index)
 {
     getUserInfo();
+}
+
+
+void UserInterface::on_infoEditBtn_clicked()
+{
+    modifyUserInfo();
 }
 

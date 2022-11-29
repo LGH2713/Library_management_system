@@ -20,6 +20,8 @@ public:
 private slots:
     void on_tabWidget_tabBarClicked(int index);
 
+    void on_infoEditBtn_clicked();
+
 private:
     Ui::UserInterface *ui;
     QSqlDatabase *dbconn; // 数据库连接
