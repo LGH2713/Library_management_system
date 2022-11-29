@@ -41,6 +41,8 @@ set(PROJECT_SOURCES
         admininterface.ui
         database.cpp
         database.h
+        bookmanagement.cpp
+        bookmanagement.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

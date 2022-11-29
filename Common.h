@@ -39,8 +39,13 @@ enum Category {
     EnvironmentScience,             // 环境科学
     ScienceFiction,                  // 科幻
     Comprehensive,                  // 综合
+};
 
-
+// 图书搜索方式
+enum SearchWay {
+    ByName,
+    ByBookISBN,
+    BYAuthor,
 };
 
 #endif // COMMON_H

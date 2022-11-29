@@ -77,6 +77,7 @@ void UserInterface::getUserInfo()
     QString sqlStr = QString("select u_id, u_name, u_password, u_mail, u_sex from user where u_id = '%1'").arg(userID);
     model->setQuery(sqlStr);
 
+    // 从数据库获取个人信息并显示到UI上
     QModelIndex index = model->index(0, 0);
     ui->userId->setText(model->data(index).toString());
 

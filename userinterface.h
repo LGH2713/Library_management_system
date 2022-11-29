@@ -26,11 +26,12 @@ private:
     Ui::UserInterface *ui;
     QSqlDatabase *dbconn; // 数据库连接
     QSqlQueryModel *model; // 数据库模型
+    QString userID; // 用户ID
+
     void pullBookInfoList(); // 拉取数据库所有书本信息
     bool checkInput(); // 审查输入的个人信息
     void modifyUserInfo(); // 修改个人信息
     void getUserInfo(); // 获取个人信息
-    QString userID; // 用户ID
 };
 
 #endif // USERINTERFACE_H
