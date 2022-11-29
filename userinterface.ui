@@ -18,7 +18,7 @@
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="bookInfo">
        <attribute name="title">
@@ -45,13 +45,6 @@
              <widget class="QPushButton" name="bookSearchBtn">
               <property name="text">
                <string>查询</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pullAll">
-              <property name="text">
-               <string>拉取所有书本信息</string>
               </property>
              </widget>
             </item>

@@ -83,12 +83,14 @@ void Login::loginSignal()
     } else {
         // 普通用户登录
         if(Common::LoginType == Type::User) {
-            model->setQuery(QString("select u_password from user where u_name = '" + username + "'"));
+            model->setQuery(QString("select u_password, u_id from user where u_name = '" + username + "'"));
             QModelIndex index_passwd = model->index(0, 0);
             QString resultPasswd = model->data(index_passwd).toString();
             qDebug() << "password = " << password << " " << "resultPasswd = " << resultPasswd;
             if(password == resultPasswd && resultPasswd != nullptr) {
                 userInterface->show();
+                QModelIndex index_id = model->index(0, 1);
+                userInterface->setUserID(model->data(index_id).toString());
             } else {
                 QMessageBox::critical(this, tr("登录失败"), tr("用户名或密码输入错误！"), QMessageBox::Cancel);
             }

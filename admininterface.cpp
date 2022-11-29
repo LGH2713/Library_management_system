@@ -86,6 +86,7 @@ void AdminInterface::getOldPasswd()
     ui->oldPasswd->setText(model->data(item_index).toString()); // 设置旧密码
 }
 
+// 修改密码
 void AdminInterface::modifyAdminPasswd()
 {
     qDebug() << ui->newPasswd->text();
@@ -93,8 +94,6 @@ void AdminInterface::modifyAdminPasswd()
     model->setQuery(sqlStr);
     getOldPasswd();
 }
-
-
 
 void AdminInterface::on_confirm_clicked()
 {
