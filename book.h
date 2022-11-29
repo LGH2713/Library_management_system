@@ -8,18 +8,18 @@ class Book
 public:
     Book();
     bool getLoanStatus();
-
-private:
     QString id;             // 编号
     QString ISBN;           // ISBN号
-    unsigned int inventory; // 库存量
+    int inventory;          // 库存量
     QString bookName;       // 书名
     QString author;         // 作者名
     QString shelfLife;      // 上架时间
     double price;           // 价格
     Category category;      // 类别
     QString press;          // 出版社
-    bool loanStatus;        // 出借状态
+    LeanStatus loanStatus;        // 出借状态
+
+    private:
 };
 
 #endif // BOOK_H

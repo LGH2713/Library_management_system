@@ -1,6 +1,7 @@
 #include "userinterface.h"
 #include "ui_userinterface.h"
 #include <QMessageBox>
+#include "utils.h"
 
 UserInterface::UserInterface(QWidget *parent) :
     QMainWindow(parent),
@@ -10,6 +11,7 @@ UserInterface::UserInterface(QWidget *parent) :
     model = new QSqlQueryModel;
 
     ui->maleRadio->setChecked(true);
+    ui->bookNameRadio->setChecked(true);
 
     // 设置列表不可编辑,只能选择一行,表头自适应
     ui->bookList->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -27,6 +29,7 @@ UserInterface::UserInterface(QWidget *parent) :
 UserInterface::~UserInterface()
 {
     delete ui;
+    delete model;
 }
 
 void UserInterface::setUserID(QString userID)
@@ -95,6 +98,39 @@ void UserInterface::getUserInfo()
     ui->maleRadio->setChecked(sex == "male");
 }
 
+void UserInterface::searchAndShow()
+{
+    bookManagement = new BookManagement;
+
+    // 清空列表
+    while(ui->bookList->rowCount() > 0)
+        ui->bookList->removeRow(0);
+
+    qDebug() << ui->bookSearchInput->text();
+
+        if(ui->bookSearchInput->text() != nullptr) {
+            if(ui->bookNameRadio->isChecked())
+                bookManagement->searchBook(ui->bookSearchInput->text(), SearchWay::ByName);
+            else if(ui->authorRadio->isChecked())
+                bookManagement->searchBook(ui->bookSearchInput->text(), SearchWay::ByAuthor);
+            else if(ui->isbnRadio->isChecked())
+                bookManagement->searchBook(ui->bookSearchInput->text(), SearchWay::ByBookISBN);
+
+
+            // 显示搜索出来的信息
+            for(int i = 0; i < bookManagement->bookList.length(); i++) {
+                qDebug() << "bookManagement->bookList.at(i)->category = " << bookManagement->bookList.at(i)->category;
+                ui->bookList->insertRow(ui->bookList->rowCount());
+                ui->bookList->setItem(i, 0, new QTableWidgetItem(bookManagement->bookList.at(i)->ISBN));
+                ui->bookList->setItem(i, 1, new QTableWidgetItem(bookManagement->bookList.at(i)->bookName));
+                ui->bookList->setItem(i, 2, new QTableWidgetItem(bookManagement->bookList.at(i)->author));
+                ui->bookList->setItem(i, 3, new QTableWidgetItem(switchCategoryEnumToQString(bookManagement->bookList.at(i)->category)));
+                ui->bookList->setItem(i, 4, new QTableWidgetItem(bookManagement->bookList.at(i)->press));
+            }
+
+        }
+}
+
 void UserInterface::on_tabWidget_tabBarClicked(int index)
 {
     getUserInfo();
@@ -104,5 +140,11 @@ void UserInterface::on_tabWidget_tabBarClicked(int index)
 void UserInterface::on_infoEditBtn_clicked()
 {
     modifyUserInfo();
+}
+
+
+void UserInterface::on_bookSearchBtn_clicked()
+{
+    searchAndShow();
 }
 

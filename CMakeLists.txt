@@ -43,6 +43,7 @@ set(PROJECT_SOURCES
         database.h
         bookmanagement.cpp
         bookmanagement.h
+        utils.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

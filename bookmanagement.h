@@ -6,8 +6,14 @@ class BookManagement: public Book
 {
 public:
     BookManagement();
+    ~BookManagement();
+    void searchBook(QString keyword, SearchWay way); // 查询书籍
 
-    QVector<Book*> bookList;
+    QList<Book*> bookList;
+
+private:
+    QSqlQueryModel *model;
+    void insertData(QString sqlStr);
 };
 
 #endif // BOOKMANAGEMENT_H

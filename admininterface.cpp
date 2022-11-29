@@ -24,7 +24,7 @@ AdminInterface::AdminInterface(QWidget *parent) :
     QHeaderView *librarianHeaderView = ui->librarianList->horizontalHeader();
     librarianHeaderView->setSectionResizeMode(QHeaderView::Stretch);
 
-    // 设置就密码框不可输入
+    // 设置旧密码框不可输入
     ui->oldPasswd->setEnabled(false);
 
     getInfo();
@@ -33,6 +33,7 @@ AdminInterface::AdminInterface(QWidget *parent) :
 AdminInterface::~AdminInterface()
 {
     delete ui;
+    delete model;
 }
 
 void AdminInterface::getInfo()

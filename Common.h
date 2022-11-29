@@ -9,6 +9,13 @@ enum Type {
     Admin,
 };
 
+// 出借状态
+enum LeanStatus {
+    OnLean,         // 已借出
+    NotOnLead,      // 未借出
+    Ordered,        // 被预约
+};
+
 class Common {
 public:
     static Type LoginType;
@@ -45,7 +52,7 @@ enum Category {
 enum SearchWay {
     ByName,
     ByBookISBN,
-    BYAuthor,
+    ByAuthor,
 };
 
 #endif // COMMON_H
