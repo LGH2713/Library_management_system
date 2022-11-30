@@ -57,7 +57,6 @@ void LibrarianInterface::getUserInfo()
 {
     QString sqlStr = QString("select * from librarian where l_id = '%1'").arg(userID);
     model->setQuery(sqlStr);
-    qDebug() << "sqlStr = " << sqlStr;
 
     // 从数据库获取个人信息并显示到UI上
     QModelIndex index = model->index(0, 0);
@@ -78,13 +77,32 @@ void LibrarianInterface::searchAndShow(QWidget *item, QWidget *showUI, SearchWay
 
 }
 
+// 获取公告发布者姓名
 QString LibrarianInterface::getPublisherName()
 {
     QString sqlStr = QString("select l_name from librarian where l_id = '%1'").arg(userID);
     model->setQuery(sqlStr);
     QModelIndex index = model->index(0, 0);
-    qDebug() << "model->data(index).toString() = " << model->data(index).toString();
     return model->data(index).toString();
+}
+
+void LibrarianInterface::publishAnnouncement()
+{
+    QString date = ui->publishTime->text();
+    QString content = ui->announcementContent->toPlainText();
+
+    qDebug() << content;
+
+    QString sqlStr = QString("insert into announcement (a_time, a_p_id, content) values ('%1', '%2', '%3')")
+            .arg(date, userID, content);
+
+    if(content != nullptr) {
+        model->setQuery(sqlStr);
+        QMessageBox::information(this, "message", "发布成功");
+        ui->announcementContent->clear();
+    }
+    else
+        QMessageBox::critical(this, "Error", "公告内容不得为空");
 }
 
 
@@ -103,5 +121,11 @@ void LibrarianInterface::on_tabWidget_tabBarClicked(int index)
 void LibrarianInterface::on_editInfoBtn_clicked()
 {
     modifyUserInfo();
+}
+
+
+void LibrarianInterface::on_publishBtn_clicked()
+{
+    publishAnnouncement();
 }
 
