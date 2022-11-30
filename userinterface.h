@@ -25,6 +25,8 @@ private slots:
 
     void on_bookSearchBtn_clicked();
 
+    void on_orderSearchBtn_clicked();
+
 private:
     Ui::UserInterface *ui;
     QSqlDatabase *dbconn; // 数据库连接
@@ -36,7 +38,7 @@ private:
     bool checkInput(); // 审查输入的个人信息
     void modifyUserInfo(); // 修改个人信息
     void getUserInfo(); // 获取个人信息
-    void searchAndShow(); // 查询数据并显示到UI上
+    void searchAndShow(QWidget *item, QWidget *showUI, SearchWay way); // 查询数据并显示到UI上
 };
 
 #endif // USERINTERFACE_H

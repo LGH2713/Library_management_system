@@ -18,7 +18,7 @@
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="bookInfo">
        <attribute name="title">
@@ -183,7 +183,33 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QTableWidget" name="orderList"/>
+         <widget class="QTableWidget" name="orderList">
+          <column>
+           <property name="text">
+            <string>ISBN号</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>新建列</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>书名</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>作者</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>出版社</string>
+           </property>
+          </column>
+         </widget>
         </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_2">

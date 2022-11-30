@@ -22,6 +22,12 @@ UserInterface::UserInterface(QWidget *parent) :
     QHeaderView *bookInfoHeaderView = ui->bookList->horizontalHeader();
     bookInfoHeaderView->setSectionResizeMode(QHeaderView::Stretch);
 
+    ui->orderList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->orderList->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->orderList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    bookInfoHeaderView = ui->orderList->horizontalHeader();
+    bookInfoHeaderView->setSectionResizeMode(QHeaderView::Stretch);
+
     // 用户ID不可编辑
     ui->userId->setEnabled(false);
 
@@ -100,43 +106,41 @@ void UserInterface::getUserInfo()
     ui->maleRadio->setChecked(sex == "male");
 }
 
-void UserInterface::searchAndShow()
+void UserInterface::searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay way)
 {
+    qDebug() << "start1";
     bookManagement = new BookManagement;
+    auto show = static_cast<QTableWidget*>(showUI);
+    auto inputText = qobject_cast<QLineEdit*>(inputUI)->text();
+    qDebug() << "inputText = " << inputText;
 
     // 清空列表
-    while(ui->bookList->rowCount() > 0)
-        ui->bookList->removeRow(0);
+    qDebug() << "ui->bookList->rowCount() = " << show->rowCount();
+    while(show->rowCount() > 0)
+        show->removeRow(0);
 
-    qDebug() << ui->bookSearchInput->text();
+    qDebug() << "start3";
 
-        if(ui->bookSearchInput->text() != nullptr) {
-            if(ui->bookNameRadio->isChecked())
-                bookManagement->searchBook(ui->bookSearchInput->text(), SearchWay::ByName);
-            else if(ui->authorRadio->isChecked())
-                bookManagement->searchBook(ui->bookSearchInput->text(), SearchWay::ByAuthor);
-            else if(ui->isbnRadio->isChecked())
-                bookManagement->searchBook(ui->bookSearchInput->text(), SearchWay::ByBookISBN);
+    if(inputText != nullptr) {
+        bookManagement->searchBook(inputText, way);
 
+        // 显示搜索出来的信息
+        for(int i = 0; i < bookManagement->bookList.length(); i++) {
+            QString temp = Utils::switchCategoryEnumToQString(bookManagement->bookList.at(i)->category);
+            show->insertRow(show->rowCount());
+            show->setItem(i, 0, new QTableWidgetItem(bookManagement->bookList.at(i)->ISBN));
+            show->setItem(i, 1, new QTableWidgetItem(bookManagement->bookList.at(i)->bookName));
+            show->setItem(i, 2, new QTableWidgetItem(bookManagement->bookList.at(i)->author));
+            show->setItem(i, 3, new QTableWidgetItem(temp));
+            show->setItem(i, 4, new QTableWidgetItem(bookManagement->bookList.at(i)->press));
 
-            // 显示搜索出来的信息
-            for(int i = 0; i < bookManagement->bookList.length(); i++) {
-                qDebug() << "bookManagement->bookList.at(i)->category = " << bookManagement->bookList.at(i)->category;
-                QString temp = Utils::switchCategoryEnumToQString(bookManagement->bookList.at(i)->category);
-                ui->bookList->insertRow(ui->bookList->rowCount());
-                ui->bookList->setItem(i, 0, new QTableWidgetItem(bookManagement->bookList.at(i)->ISBN));
-                ui->bookList->setItem(i, 1, new QTableWidgetItem(bookManagement->bookList.at(i)->bookName));
-                ui->bookList->setItem(i, 2, new QTableWidgetItem(bookManagement->bookList.at(i)->author));
-                ui->bookList->setItem(i, 3, new QTableWidgetItem(temp));
-                ui->bookList->setItem(i, 4, new QTableWidgetItem(bookManagement->bookList.at(i)->press));
-
-                // 设置文字居中
-                for(int j = 0; j < ui->bookList->columnCount(); j++) {
-                    ui->bookList->item(i, j)->setTextAlignment(Qt::AlignCenter);
-                }
+            // 设置文字居中
+            for(int j = 0; j < ui->bookList->columnCount(); j++) {
+                show->item(i, j)->setTextAlignment(Qt::AlignCenter);
             }
-
         }
+
+    }
 }
 
 void UserInterface::on_tabWidget_tabBarClicked(int index)
@@ -153,6 +157,17 @@ void UserInterface::on_infoEditBtn_clicked()
 
 void UserInterface::on_bookSearchBtn_clicked()
 {
-    searchAndShow();
+    if(ui->bookNameRadio->isChecked())
+        searchAndShow(ui->bookSearchInput, ui->bookList, SearchWay::ByName);
+    else if(ui->authorRadio->isChecked())
+        searchAndShow(ui->bookSearchInput, ui->bookList, SearchWay::ByAuthor);
+    else if(ui->isbnRadio->isChecked())
+        searchAndShow(ui->bookSearchInput, ui->bookList, SearchWay::ByBookISBN);
+}
+
+
+void UserInterface::on_orderSearchBtn_clicked()
+{
+    searchAndShow(ui->orderSearch, ui->orderList, SearchWay::ByBookISBN);
 }
 
