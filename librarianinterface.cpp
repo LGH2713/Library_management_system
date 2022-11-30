@@ -117,6 +117,12 @@ LibrarianInterface::LibrarianInterface(QWidget *parent) :
     QHeaderView *bookInfoHeaderView = ui->bookList->horizontalHeader();
     bookInfoHeaderView->setSectionResizeMode(QHeaderView::Stretch);
 
+    ui->deleteBookList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->deleteBookList->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->deleteBookList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    bookInfoHeaderView = ui->deleteBookList->horizontalHeader();
+    bookInfoHeaderView->setSectionResizeMode(QHeaderView::Stretch);
+
 
     // 设置图书管理员个人信息的ID无法修改
     ui->librarianId->setEnabled(false);
@@ -334,5 +340,11 @@ void LibrarianInterface::on_addBookBtn_clicked()
 void LibrarianInterface::on_bookInfoClear_clicked()
 {
     clearAddInfo();
+}
+
+
+void LibrarianInterface::on_deleteSearchBtn_clicked()
+{
+    searchAndShow(ui->deleteSearchInput, ui->deleteBookList, SearchWay::ByBookISBN);
 }
 
