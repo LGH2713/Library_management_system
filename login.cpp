@@ -83,7 +83,7 @@ void Login::loginSignal()
     } else {
         // 普通用户登录
         if(Common::LoginType == Type::User) {
-            model->setQuery(QString("select u_password, u_id from user where u_name = '" + username + "'"));
+            model->setQuery(QString("select u_password, u_id from user where u_name = '%1'").arg(username));
             QModelIndex index_passwd = model->index(0, 0);
             QString resultPasswd = model->data(index_passwd).toString();
             qDebug() << "password = " << password << " " << "resultPasswd = " << resultPasswd;
@@ -97,11 +97,13 @@ void Login::loginSignal()
         }
         // 图书管理员登录
         else {
-            model->setQuery(QString("select l_password from librarian where l_name = '" + username + "'"));
+            model->setQuery(QString("select l_password, l_id from librarian where l_name = '%1'").arg(username));
             QModelIndex index_passwd = model->index(0, 0);
             QString resultPasswd = model->data(index_passwd).toString();
             if(password == resultPasswd && resultPasswd != nullptr) {
                 librarianInterface->show();
+                QModelIndex index_id = model->index(0, 1);
+                librarianInterface->setUserID(model->data(index_id).toString());
             }else {
                 QMessageBox::critical(this, tr("登录失败"), tr("用户名或密码输入错误！"), QMessageBox::Cancel);
             }
