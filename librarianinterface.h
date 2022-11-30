@@ -22,6 +22,8 @@ public:
 private slots:
     void on_tabWidget_tabBarClicked(int index);
 
+    void on_editInfoBtn_clicked();
+
 private:
     Ui::LibrarianInterface *ui;
     QString stringItemList;

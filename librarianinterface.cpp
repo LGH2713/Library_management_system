@@ -1,5 +1,6 @@
 #include "librarianinterface.h"
 #include "ui_librarianinterface.h"
+#include <QMessageBox>
 
 LibrarianInterface::LibrarianInterface(QWidget *parent) :
     QMainWindow(parent),
@@ -33,7 +34,17 @@ bool LibrarianInterface::checkInput()
 
 void LibrarianInterface::modifyUserInfo()
 {
+    QString name = ui->librarianName->text();
+    QString passwd = ui->librarianPassword->text();
+    QString mail = ui->librarianMail->text();
 
+    if(checkInput()) {
+        QString sqlStr = QString("update librarian set l_name = '%1', l_password = '%2', l_mail = '%3' where l_id = %4")
+                .arg(name, passwd, mail, userID);
+        model->setQuery(sqlStr);
+        getUserInfo();
+        QMessageBox::information(this, "修改信息", "修改成功", QMessageBox::Ok);
+    }
 }
 
 void LibrarianInterface::getUserInfo()
@@ -67,5 +78,11 @@ void LibrarianInterface::searchAndShow(QWidget *item, QWidget *showUI, SearchWay
 void LibrarianInterface::on_tabWidget_tabBarClicked(int index)
 {
     getUserInfo();
+}
+
+
+void LibrarianInterface::on_editInfoBtn_clicked()
+{
+    modifyUserInfo();
 }
 
