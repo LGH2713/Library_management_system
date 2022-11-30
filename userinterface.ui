@@ -267,7 +267,23 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QTableWidget" name="announcementList"/>
+         <widget class="QTableWidget" name="announcementList">
+          <column>
+           <property name="text">
+            <string>公告ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>发布时间</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>发布者</string>
+           </property>
+          </column>
+         </widget>
         </item>
        </layout>
       </widget>

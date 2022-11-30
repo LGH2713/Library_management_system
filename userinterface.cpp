@@ -16,22 +16,34 @@ UserInterface::UserInterface(QWidget *parent) :
     ui->bookNameRadio->setChecked(true);
 
     // 设置列表不可编辑,只能选择一行,表头自适应
+    // 搜索列表
     ui->bookList->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->bookList->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->bookList->setEditTriggers(QAbstractItemView::NoEditTriggers);
     QHeaderView *bookInfoHeaderView = ui->bookList->horizontalHeader();
     bookInfoHeaderView->setSectionResizeMode(QHeaderView::Stretch);
 
+    // 预约列表
     ui->orderList->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->orderList->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->orderList->setEditTriggers(QAbstractItemView::NoEditTriggers);
     bookInfoHeaderView = ui->orderList->horizontalHeader();
     bookInfoHeaderView->setSectionResizeMode(QHeaderView::Stretch);
 
+    // 公告列表
+    ui->announcementList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->announcementList->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->announcementList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    bookInfoHeaderView = ui->announcementList->horizontalHeader();
+    bookInfoHeaderView->setSectionResizeMode(QHeaderView::Stretch);
+
     // 用户ID不可编辑
     ui->userId->setEnabled(false);
 
+    // 拉取图书信息
     pullBookInfoList();
+    // 拉取公告信息
+    getAnnouncementList();
 }
 
 UserInterface::~UserInterface()
@@ -140,6 +152,20 @@ void UserInterface::searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay w
             }
         }
 
+    }
+}
+
+void UserInterface::getAnnouncementList()
+{
+    QString sqlStr = QString("select a.a_id, a.a_time, b.l_name from announcement a inner join librarian b on a.a_p_id = b.l_id");
+    model->setQuery(sqlStr);
+
+    for(int i = 0; i < model->rowCount(); i++) {
+        ui->announcementList->insertRow(ui->announcementList->rowCount());
+        for(int j = 0; j < model->columnCount(); j++) {
+            QModelIndex index = model->index(i, j);
+            ui->announcementList->setItem(i, j, new QTableWidgetItem(model->data(index).toString()));
+        }
     }
 }
 
