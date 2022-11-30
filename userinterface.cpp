@@ -3,7 +3,56 @@
 #include <QMessageBox>
 #include "bookmanagement.h"
 
-#include "utils.h"
+namespace UserUtils {
+QString switchCategoryEnumToQString(enum Category category) {
+    qDebug() <<  category;
+    switch(category) {
+    case Category::Aerospace :
+        return "Aerospace";
+    case Category::Argiculture:
+        return "Argiculture";
+    case Category::Art :
+        return "Art";
+    case Category::BiologicalScience:
+        return "BiologicalScience";
+    case Category::Comprehensive:
+        return "Comprehensive";
+    case Category::Economic:
+        return "Economic";
+    case Category::Education:
+        return "Education";
+    case Category::HistoryAndGeography:
+        return "HistoryAndGeography";
+    case Category::IndustrialTechnology:
+        return "IndustrialTechnology";
+    case Category::LanguageAndWriting:
+        return "LanguageAndWriting";
+    case Category::Literature:
+        return "Literature";
+    case Category::MathematicalAndChemistry:
+        return "MathematicalAndChemistry";
+    case Category::Military:
+        return "Military";
+    case Category::Philosophy:
+        return "Philosophy";
+    case Category::ScienceFiction:
+        return "ScienceFiction";
+    case Category::SocialScience:
+        return "SocialScience";
+    case Category::PoliticalAndLaw:
+        return "PoliticalAndLaw";
+    case Category::Transportation:
+        return "Transportation";
+    case Category::MedicineAndHealth:
+        return "MedicineAndHealth";
+    case Category::EnvironmentScience:
+        return "EnvironmentScience";
+    default:
+        return "";
+    };
+}
+}
+
 
 UserInterface::UserInterface(QWidget *parent) :
     QMainWindow(parent),
@@ -120,11 +169,9 @@ void UserInterface::getUserInfo()
 
 void UserInterface::searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay way)
 {
-    qDebug() << "start1";
     bookManagement = new BookManagement;
     auto show = static_cast<QTableWidget*>(showUI);
     auto inputText = qobject_cast<QLineEdit*>(inputUI)->text();
-    qDebug() << "inputText = " << inputText;
 
     // 清空列表
     qDebug() << "ui->bookList->rowCount() = " << show->rowCount();
@@ -138,7 +185,7 @@ void UserInterface::searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay w
 
         // 显示搜索出来的信息
         for(int i = 0; i < bookManagement->bookList.length(); i++) {
-            QString temp = Utils::switchCategoryEnumToQString(bookManagement->bookList.at(i)->category);
+            QString temp = UserUtils::switchCategoryEnumToQString(bookManagement->bookList.at(i)->category);
             show->insertRow(show->rowCount());
             show->setItem(i, 0, new QTableWidgetItem(bookManagement->bookList.at(i)->ISBN));
             show->setItem(i, 1, new QTableWidgetItem(bookManagement->bookList.at(i)->bookName));

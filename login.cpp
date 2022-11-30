@@ -86,7 +86,6 @@ void Login::loginSignal()
             model->setQuery(QString("select u_password, u_id from user where u_name = '%1'").arg(username));
             QModelIndex index_passwd = model->index(0, 0);
             QString resultPasswd = model->data(index_passwd).toString();
-            qDebug() << "password = " << password << " " << "resultPasswd = " << resultPasswd;
             if(password == resultPasswd && resultPasswd != nullptr) {
                 userInterface->show();
                 QModelIndex index_id = model->index(0, 1);
