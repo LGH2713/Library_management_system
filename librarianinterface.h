@@ -37,6 +37,7 @@ private:
     void modifyUserInfo(); // 修改个人信息
     void getUserInfo(); // 获取个人信息
     void searchAndShow(QWidget *item, QWidget *showUI, SearchWay way); // 查询数据并显示到UI上
+    QString getPublisherName(); // 获取发布公告的图书管理员的姓名
 };
 
 #endif // LIBRARIANINTERFACE_H

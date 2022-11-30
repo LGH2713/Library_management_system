@@ -1,6 +1,7 @@
 #include "librarianinterface.h"
 #include "ui_librarianinterface.h"
 #include <QMessageBox>
+#include <QDate>
 
 LibrarianInterface::LibrarianInterface(QWidget *parent) :
     QMainWindow(parent),
@@ -9,7 +10,12 @@ LibrarianInterface::LibrarianInterface(QWidget *parent) :
     ui->setupUi(this);
     model = new QSqlQueryModel;
 
+    // 设置图书管理员个人信息的ID无法修改
     ui->librarianId->setEnabled(false);
+
+    // 设置发布公告页的信息无法编辑
+    ui->publishTime->setEnabled(false);
+    ui->publisherName->setEnabled(false);
 }
 
 LibrarianInterface::~LibrarianInterface()
@@ -72,12 +78,25 @@ void LibrarianInterface::searchAndShow(QWidget *item, QWidget *showUI, SearchWay
 
 }
 
+QString LibrarianInterface::getPublisherName()
+{
+    QString sqlStr = QString("select l_name from librarian where l_id = '%1'").arg(userID);
+    model->setQuery(sqlStr);
+    QModelIndex index = model->index(0, 0);
+    qDebug() << "model->data(index).toString() = " << model->data(index).toString();
+    return model->data(index).toString();
+}
+
 
 
 
 void LibrarianInterface::on_tabWidget_tabBarClicked(int index)
 {
+    // 获取个人信息
     getUserInfo();
+    // 设置发布公告基本信息
+    ui->publishTime->setText(QDate::currentDate().toString("yyyy-MM-dd"));
+    ui->publisherName->setText(getPublisherName());
 }
 
 
