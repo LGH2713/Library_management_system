@@ -18,7 +18,7 @@
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="bookInfo">
        <attribute name="title">
@@ -262,12 +262,12 @@
         <item row="0" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>当前公告：</string>
+           <string>公告列表：</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QTextEdit" name="announcementContent"/>
+         <widget class="QTableWidget" name="announcementList"/>
         </item>
        </layout>
       </widget>
