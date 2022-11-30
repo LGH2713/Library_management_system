@@ -1,6 +1,8 @@
 #include "userinterface.h"
 #include "ui_userinterface.h"
 #include <QMessageBox>
+#include "bookmanagement.h"
+
 #include "utils.h"
 
 UserInterface::UserInterface(QWidget *parent) :
@@ -120,12 +122,18 @@ void UserInterface::searchAndShow()
             // 显示搜索出来的信息
             for(int i = 0; i < bookManagement->bookList.length(); i++) {
                 qDebug() << "bookManagement->bookList.at(i)->category = " << bookManagement->bookList.at(i)->category;
+                QString temp = Utils::switchCategoryEnumToQString(bookManagement->bookList.at(i)->category);
                 ui->bookList->insertRow(ui->bookList->rowCount());
                 ui->bookList->setItem(i, 0, new QTableWidgetItem(bookManagement->bookList.at(i)->ISBN));
                 ui->bookList->setItem(i, 1, new QTableWidgetItem(bookManagement->bookList.at(i)->bookName));
                 ui->bookList->setItem(i, 2, new QTableWidgetItem(bookManagement->bookList.at(i)->author));
-                ui->bookList->setItem(i, 3, new QTableWidgetItem(switchCategoryEnumToQString(bookManagement->bookList.at(i)->category)));
+                ui->bookList->setItem(i, 3, new QTableWidgetItem(temp));
                 ui->bookList->setItem(i, 4, new QTableWidgetItem(bookManagement->bookList.at(i)->press));
+
+                // 设置文字居中
+                for(int j = 0; j < ui->bookList->columnCount(); j++) {
+                    ui->bookList->item(i, j)->setTextAlignment(Qt::AlignCenter);
+                }
             }
 
         }

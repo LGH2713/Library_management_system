@@ -1,6 +1,50 @@
 #include "bookmanagement.h"
-#include "Common.h"
 #include <QMessageBox>
+
+enum Category switchCategoryQStringToEnum(QString category) {
+    if(category == "Aerospace")
+        return  Category::Aerospace;
+    else if(category == "Argiculture")
+        return Category::Argiculture;
+    else if(category == "Art")
+        return  Category::Art ;
+    else if(category == "BiologicalScience")
+        return Category::BiologicalScience;
+    else if(category == "Comprehensive")
+        return Category::Comprehensive;
+    else if(category == "Economic")
+        return  Category::Economic;
+    else if(category == "Education")
+        return  Category::Education;
+    else if(category == "HistoryAndGeography")
+        return  Category::HistoryAndGeography;
+    else if(category == "IndustrialTechnology")
+        return Category::IndustrialTechnology;
+    else if(category == "LanguageAndWriting")
+        return Category::LanguageAndWriting;
+    else if(category == "Literature")
+        return Category::Literature;
+    else if(category == "MathematicalAndChemistry")
+        return Category::MathematicalAndChemistry;
+    else if(category == "Military")
+        return Category::Military;
+    else if(category == "Philosophy")
+        return Category::Philosophy;
+    else if(category == "ScienceFiction")
+        return Category::ScienceFiction;
+    else if(category == "SocialScience")
+        return  Category::SocialScience;
+    else if(category == "PoliticalAndLaw")
+        return Category::PoliticalAndLaw;
+    else if(category == "Transportation")
+        return Category::Transportation;
+    else if(category == "MedicineAndHealth")
+        return Category::MedicineAndHealth;
+    else if(category == "EnvironmentScience")
+        return Category::EnvironmentScience;
+    else
+        return Category::Comprehensive;
+}
 
 BookManagement::BookManagement()
 {
@@ -12,7 +56,7 @@ BookManagement::~BookManagement()
     delete model;
 }
 
-void BookManagement::searchBook(QString keyword, SearchWay way)
+void BookManagement::searchBook(QString keyword, enum SearchWay way)
 {
     switch(way) {
     case SearchWay::ByName: {
@@ -21,7 +65,7 @@ void BookManagement::searchBook(QString keyword, SearchWay way)
         break;
     }
     case SearchWay::ByAuthor: {
-         QString sqlStr = QString("select * from book where author = '%1'").arg(keyword);
+        QString sqlStr = QString("select * from book where author = '%1'").arg(keyword);
         insertData(sqlStr);
         break;
     }
@@ -71,9 +115,11 @@ void BookManagement::insertData(QString sqlStr)
                 book->price = data.toDouble();
                 break;
             case 7:
+                book->category = switchCategoryQStringToEnum(data);
+            case 8:
                 book->press = data;
                 break;
-            case 8:
+            case 9:
                 book->loanStatus = data == "OnLean" ? LeanStatus::OnLean :
                                                       data == "NotOnLean" ? LeanStatus::NotOnLead : LeanStatus::Ordered;
                 break;

@@ -2,12 +2,13 @@
 #define BOOKMANAGEMENT_H
 #include "book.h"
 
+
 class BookManagement: public Book
 {
 public:
     BookManagement();
     ~BookManagement();
-    void searchBook(QString keyword, SearchWay way); // 查询书籍
+    void searchBook(QString keyword, enum SearchWay way); // 查询书籍
 
     QList<Book*> bookList;
 
