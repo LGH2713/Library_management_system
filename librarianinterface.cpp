@@ -52,6 +52,51 @@ QString switchCategoryEnumToQString(enum Category category) {
         return "";
     };
 }
+
+enum Category switchCategoryQStringToEnum(QString category) {
+    if(category == "Aerospace")
+        return  Category::Aerospace;
+    else if(category == "Argiculture")
+        return Category::Argiculture;
+    else if(category == "Art")
+        return  Category::Art ;
+    else if(category == "BiologicalScience")
+        return Category::BiologicalScience;
+    else if(category == "Comprehensive")
+        return Category::Comprehensive;
+    else if(category == "Economic")
+        return  Category::Economic;
+    else if(category == "Education")
+        return  Category::Education;
+    else if(category == "HistoryAndGeography")
+        return  Category::HistoryAndGeography;
+    else if(category == "IndustrialTechnology")
+        return Category::IndustrialTechnology;
+    else if(category == "LanguageAndWriting")
+        return Category::LanguageAndWriting;
+    else if(category == "Literature")
+        return Category::Literature;
+    else if(category == "MathematicalAndChemistry")
+        return Category::MathematicalAndChemistry;
+    else if(category == "Military")
+        return Category::Military;
+    else if(category == "Philosophy")
+        return Category::Philosophy;
+    else if(category == "ScienceFiction")
+        return Category::ScienceFiction;
+    else if(category == "SocialScience")
+        return  Category::SocialScience;
+    else if(category == "PoliticalAndLaw")
+        return Category::PoliticalAndLaw;
+    else if(category == "Transportation")
+        return Category::Transportation;
+    else if(category == "MedicineAndHealth")
+        return Category::MedicineAndHealth;
+    else if(category == "EnvironmentScience")
+        return Category::EnvironmentScience;
+    else
+        return Category::Comprehensive;
+}
 }
 
 
@@ -106,7 +151,6 @@ void LibrarianInterface::pullBookInfoList()
             QModelIndex item_index = model->index(i, j);
             ui->bookList->setItem(i, j, new QTableWidgetItem(model->data(item_index).toString()));
             ui->bookList->item(i, j)->setTextAlignment(Qt::AlignCenter); // 设置文字居中
-            qDebug() << "model->data(item_index).toString() = " << model->data(item_index).toString();
         }
     }
 }
@@ -157,11 +201,8 @@ void LibrarianInterface::searchAndShow(QWidget *inputUI, QWidget *showUI, Search
     auto inputText = qobject_cast<QLineEdit*>(inputUI)->text();
 
     // 清空列表
-    qDebug() << "ui->bookList->rowCount() = " << show->rowCount();
     while(show->rowCount() > 0)
         show->removeRow(0);
-
-    qDebug() << "start3";
 
     if(inputText != nullptr) {
         bookManagement->searchBook(inputText, way);
@@ -201,8 +242,6 @@ void LibrarianInterface::publishAnnouncement()
     QString date = ui->publishTime->text();
     QString content = ui->announcementContent->toPlainText();
 
-    qDebug() << content;
-
     QString sqlStr = QString("insert into announcement (a_time, a_p_id, content) values ('%1', '%2', '%3')")
             .arg(date, userID, content);
 
@@ -215,6 +254,39 @@ void LibrarianInterface::publishAnnouncement()
         QMessageBox::critical(this, "Error", "公告内容不得为空");
 }
 
+void LibrarianInterface::addNewBook()
+{
+    QString isbn = ui->addISBN->text();
+    QString bookName = ui->addBookName->text();
+    QString author = ui->addAuthor->text() != nullptr ? ui->addAuthor->text() : "佚名";
+    QString shelfLife = ui->dateEdit->date().toString("yy-MM-dd");
+    QString price = ui->addPrice->text();
+    QString category = ui->addCategory->currentText().split("（")[0];
+    QString press = ui->addPress->text();
+    QString inventory = ui->addInventory->text();
+
+    QString sqlStr = QString("insert into book (isbn, inventory, b_name, author, shelf_life, price, category, press) values ('%1', %2, '%3', '%4', '%5', %6, '%7', '%8')")
+            .arg(isbn, inventory, bookName, author, shelfLife, price, category, press);
+
+    qDebug() << sqlStr;
+
+    model->setQuery(sqlStr);
+    QMessageBox::information(this, "Message", "添加成功");
+    clearAddInfo();
+}
+
+void LibrarianInterface::clearAddInfo()
+{
+    ui->addISBN->clear();
+    ui->addBookName->clear();
+    ui->addAuthor->clear();
+    ui->addPrice->clear();
+    ui->addPress->clear();
+    ui->addInventory->clear();
+    ui->addCategory->setCurrentIndex(0);
+    ui->dateEdit->setDate(QDate::currentDate());
+}
+
 
 
 
@@ -225,6 +297,8 @@ void LibrarianInterface::on_tabWidget_tabBarClicked(int index)
     // 设置发布公告基本信息
     ui->publishTime->setText(QDate::currentDate().toString("yyyy-MM-dd"));
     ui->publisherName->setText(getPublisherName());
+
+    pullBookInfoList();
 }
 
 
@@ -248,5 +322,17 @@ void LibrarianInterface::on_bookSearchBtn_clicked()
         searchAndShow(ui->bookSearchInput, ui->bookList, SearchWay::ByAuthor);
     else if(ui->isbnRadio->isChecked())
         searchAndShow(ui->bookSearchInput, ui->bookList, SearchWay::ByBookISBN);
+}
+
+
+void LibrarianInterface::on_addBookBtn_clicked()
+{
+    addNewBook();
+}
+
+
+void LibrarianInterface::on_bookInfoClear_clicked()
+{
+    clearAddInfo();
 }
 

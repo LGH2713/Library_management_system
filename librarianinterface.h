@@ -28,6 +28,10 @@ private slots:
 
     void on_bookSearchBtn_clicked();
 
+    void on_addBookBtn_clicked();
+
+    void on_bookInfoClear_clicked();
+
 private:
     Ui::LibrarianInterface *ui;
     QString stringItemList;
@@ -43,6 +47,8 @@ private:
     void searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay way); // 查询数据并显示到UI上
     QString getPublisherName(); // 获取发布公告的图书管理员的姓名
     void publishAnnouncement(); // 发布公告
+    void addNewBook(); // 添加书籍
+    void clearAddInfo(); // 清除填写的添加信息
 };
 
 #endif // LIBRARIANINTERFACE_H
