@@ -348,3 +348,21 @@ void LibrarianInterface::on_deleteSearchBtn_clicked()
     searchAndShow(ui->deleteSearchInput, ui->deleteBookList, SearchWay::ByBookISBN);
 }
 
+
+void LibrarianInterface::on_deleteBookBtn_clicked()
+{
+    int currentRowIndex = ui->deleteBookList->currentRow();
+    auto currentRow = ui->deleteBookList->selectedItems();
+    QString isbn = currentRow.at(currentRowIndex)->text();
+
+
+    QString sqlStr = QString("delete from book where isbn = '%1'").arg(isbn);
+    model->setQuery(sqlStr);
+
+    // 清空查询列表数据
+    while(ui->deleteBookList->rowCount() > 0)
+        ui->deleteBookList->removeRow(0);
+
+    QMessageBox::information(this, "Message", "删除成功");
+}
+

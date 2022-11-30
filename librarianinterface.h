@@ -34,6 +34,8 @@ private slots:
 
     void on_deleteSearchBtn_clicked();
 
+    void on_deleteBookBtn_clicked();
+
 private:
     Ui::LibrarianInterface *ui;
     QString stringItemList;
