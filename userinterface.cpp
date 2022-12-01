@@ -267,7 +267,7 @@ void UserInterface::showDetails(QString isbn)
 {
     bookDetail->setWindowTitle("书本详情");
     bookDetail->setIsbn(isbn);
-    bookDetail->getDetail();
+    bookDetail->getDetail(false);
     bookDetail->show();
 
 }

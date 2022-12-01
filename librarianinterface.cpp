@@ -106,6 +106,7 @@ LibrarianInterface::LibrarianInterface(QWidget *parent) :
 {
     ui->setupUi(this);
     model = new QSqlQueryModel;
+    bookDetail = new BookDetail;
 
     ui->bookNameRadio->setChecked(true);
 
@@ -293,6 +294,15 @@ void LibrarianInterface::clearAddInfo()
     ui->dateEdit->setDate(QDate::currentDate());
 }
 
+void LibrarianInterface::showDetails(QString isbn)
+{
+    bookDetail->setWindowTitle("书本详情");
+    bookDetail->setIsbn(isbn);
+    bookDetail->getDetail(false);
+    bookDetail->showEditMode();
+    bookDetail->show();
+}
+
 
 
 
@@ -364,5 +374,13 @@ void LibrarianInterface::on_deleteBookBtn_clicked()
         ui->deleteBookList->removeRow(0);
 
     QMessageBox::information(this, "Message", "删除成功");
+}
+
+
+void LibrarianInterface::on_bookList_clicked(const QModelIndex &index)
+{
+    int currentRow = ui->bookList->selectionModel()->currentIndex().row();
+    QString isbn = ui->bookList->item(currentRow, 0)->text();
+    showDetails(isbn);
 }
 

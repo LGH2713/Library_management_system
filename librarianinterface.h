@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include "Common.h"
 #include "bookmanagement.h"
+#include "bookdetail.h"
 
 namespace Ui {
 class LibrarianInterface;
@@ -36,6 +37,8 @@ private slots:
 
     void on_deleteBookBtn_clicked();
 
+    void on_bookList_clicked(const QModelIndex &index);
+
 private:
     Ui::LibrarianInterface *ui;
     QString stringItemList;
@@ -43,6 +46,7 @@ private:
     QSqlQueryModel *model;
     QString userID; // 用户ID
     BookManagement *bookManagement;
+    BookDetail *bookDetail;
 
     void pullBookInfoList();                                                // 拉取数据库所有书本信息
     bool checkInput();                                                      // 审查输入的个人信息
@@ -53,6 +57,7 @@ private:
     void publishAnnouncement();                                             // 发布公告
     void addNewBook();                                                      // 添加书籍
     void clearAddInfo();                                                    // 清除填写的添加信息
+    void showDetails(QString isbn);                                                 // 展示书本详情
 };
 
 #endif // LIBRARIANINTERFACE_H
