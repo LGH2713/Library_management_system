@@ -41,6 +41,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_returnUserIDSearchBtn_clicked();
+
 private:
     Ui::LibrarianInterface *ui;
     QString stringItemList;
@@ -62,7 +64,8 @@ private:
     void clearAddInfo();                                                    // 清除填写的添加信息
     void showDetails(QString isbn);                                         // 展示书本详情
     void getRequestList();                                                  // 获取借书请求列表
-    void confirmRequest(QString isbn);                                                  // 通过请求
+    void confirmRequest(QString isbn);                                      // 通过请求
+    void getReturnBookList();                                               // 获取还书列表
 };
 
 #endif // LIBRARIANINTERFACE_H

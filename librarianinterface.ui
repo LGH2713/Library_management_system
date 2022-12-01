@@ -100,14 +100,14 @@
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_13">
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="returnUserIDInput">
             <property name="placeholderText">
              <string>用户ID...</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="returnUserIDSearchBtn">
             <property name="text">
              <string>查询</string>
             </property>
@@ -154,12 +154,12 @@
           </column>
           <column>
            <property name="text">
-            <string>剩余借阅时间</string>
+            <string>续借次数</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>续借次数</string>
+            <string>剩余借阅时间</string>
            </property>
           </column>
          </widget>

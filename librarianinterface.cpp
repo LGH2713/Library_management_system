@@ -345,6 +345,43 @@ void LibrarianInterface::confirmRequest(QString isbn)
     QMessageBox::information(this, "Message", "已通过请求");
 }
 
+void LibrarianInterface::getReturnBookList()
+{
+    while(ui->returnBookList->rowCount() > 0)
+        ui->returnBookList->removeRow(0);
+
+    QString userID = ui->returnUserIDInput->text();
+    if(userID != nullptr) {
+        QString sqlStr = QString("select bb_isbn, bb_name, bb_book_name, bb_renew_count, bb_start_time, bb_deadline from borrow_books "
+                                 "where bb_name = (select u_name from user where u_id = '%1')").arg(userID);
+        qDebug() <<  sqlStr;
+        model->setQuery(sqlStr);
+        QModelIndex index;
+
+        QDate startTime;
+        QDate deadline;
+
+        for(int i = 0; i < model->rowCount(); i++) {
+            ui->returnBookList->insertRow(ui->returnBookList->rowCount());
+            for(int j = 0; j < model->columnCount(); j++) {
+                index = model->index(i, j);
+                if(j != 4  && j != 5) {
+                    qDebug() << model->data(index).toString();
+                    ui->returnBookList->setItem(i, j, new QTableWidgetItem(model->data(index).toString()));
+                }  else if(j == 4)  {
+                    startTime = QDate::fromString(model->data(index).toString(), "yyyy-MM-dd");
+                } else if(j == 5)  {
+                    deadline = QDate::fromString(model->data(index).toString(), "yyyy-MM-dd");
+                    QString time = QString("%1").arg((deadline.day() - startTime.day()) - (QDate::currentDate().day() - deadline.day()));
+                    ui->returnBookList->setItem(i, j - 1, new QTableWidgetItem(time));
+                }
+            }
+        }
+    } else {
+        QMessageBox::critical(this, "Error", "查询信息不能为空");
+    }
+}
+
 
 
 
@@ -437,5 +474,11 @@ void LibrarianInterface::on_pushButton_clicked()
         confirmRequest(item.at(0)->text());
     else
         QMessageBox::critical(this, "Error", "没有选中图书");
+}
+
+
+void LibrarianInterface::on_returnUserIDSearchBtn_clicked()
+{
+    getReturnBookList();
 }
 
