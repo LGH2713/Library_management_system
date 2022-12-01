@@ -9,6 +9,7 @@ Register::Register(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->registerTitle->setEnabled(false);
+    model = new QSqlQueryModel;
 
     buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(ui->maleRadio);
@@ -22,11 +23,6 @@ Register::Register(QWidget *parent) :
 Register::~Register()
 {
     delete ui;
-}
-
-void Register::setDbconn(QSqlDatabase *dbconn)
-{
-    this->dbconn = dbconn;
 }
 
 void Register::registerSignal()
@@ -44,14 +40,16 @@ void Register::registerSignal()
     QString sqlStr;
     // 根据不同的注册类型创建sql语句
     if(Common::RegisterType == Type::User && inputCheck())
-        sqlStr = QString("INSERT INTO user (u_name, u_sex, u_password, u_mail) VALUES ('" + username +"', '" + sexType + "', '" + password + "', '" + mail + "')");
+        sqlStr = QString("insert into user (u_name, u_sex, u_password, u_mail) values "
+                         "('%1', '%2', '%3', '%4')").arg(username, sexType, password, mail);
     else if(Common::RegisterType == Type::Librarian && inputCheck())
-        sqlStr = QString("INSERT INTO librarian (l_name, l_password, l_mail) VALUES ('" + username + "', '" + password + "', '" + mail + "')");
+        sqlStr = QString("insert into librarian (l_name, l_password, l_mail) values "
+                         "('%1', '%2', '%3')").arg(username, password, mail);
+
+    qDebug() << sqlStr;
 
     // 执行sql
-    dbconn->open();
     model->setQuery(sqlStr);
-    dbconn->close();
 }
 
 // 检查输入信息

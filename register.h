@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QButtonGroup>
-#include <QSqlDatabase>
+#include <QSqlQueryModel>
 
 namespace Ui {
 class Register;
@@ -43,7 +43,7 @@ private slots:
 
 private:
     Ui::Register *ui;
-    QSqlDatabase *dbconn; // 数据库连接
+    QSqlQueryModel *model; // 数据库连接
     bool inputCheck(); // 输入数据检测
 };
 

@@ -22,6 +22,8 @@ private slots:
 
     void on_cancelUserBtn_clicked();
 
+    void on_cancelLibrarianBtn_clicked();
+
 private:
     Ui::AdminInterface *ui;
     QSqlDatabase *dbconn; // 数据库连接

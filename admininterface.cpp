@@ -45,6 +45,8 @@ void AdminInterface::getInfo()
 
 void AdminInterface::getAllUser()
 {
+    while(ui->userList->rowCount() > 0)
+        ui->userList->removeRow(0);
     QString sqlStr = QString("select u_id, u_name, u_sex, u_password, u_mail from user");
 
     qDebug() << "user start";
@@ -64,6 +66,9 @@ void AdminInterface::getAllUser()
 
 void AdminInterface::getAllLibrarian()
 {
+    while(ui->librarianList->rowCount() > 0)
+        ui->librarianList->removeRow(0);
+
     QString sqlStr = QString("select l_id, l_name, l_mail, l_password from librarian");
     model->setQuery(sqlStr);
 
@@ -98,12 +103,18 @@ void AdminInterface::modifyAdminPasswd()
 
 void AdminInterface::cancelUser(QString userID)
 {
-
+    QString sqlStr = QString("delete from user where u_id = '1'").arg(userID);
+    model->setQuery(sqlStr);
+    getAllUser();
+    QMessageBox::information(this, "Message", "注销成功");
 }
 
 void AdminInterface::cancelLibrarian(QString librarianID)
 {
-
+    QString sqlStr = QString("delete from librarian where l_id = '1'").arg(librarianID);
+    model->setQuery(sqlStr);
+    getAllLibrarian();
+    QMessageBox::information(this, "Message", "注销成功");
 }
 
 void AdminInterface::on_confirm_clicked()
@@ -115,6 +126,20 @@ void AdminInterface::on_confirm_clicked()
 
 void AdminInterface::on_cancelUserBtn_clicked()
 {
+    auto item = ui->userList->selectedItems();
+    if(!item.isEmpty())
+        cancelUser(item.at(0)->text());
+    else
+        QMessageBox::critical(this, "Error", "未选中行");
+}
 
+
+void AdminInterface::on_cancelLibrarianBtn_clicked()
+{
+    auto item = ui->librarianList->selectedItems();
+    if(!item.isEmpty())
+        cancelLibrarian(item.at(0)->text());
+    else
+        QMessageBox::critical(this, "Error", "未选中行");
 }
 
