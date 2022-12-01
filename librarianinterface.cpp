@@ -124,6 +124,11 @@ LibrarianInterface::LibrarianInterface(QWidget *parent) :
     bookInfoHeaderView = ui->deleteBookList->horizontalHeader();
     bookInfoHeaderView->setSectionResizeMode(QHeaderView::Stretch);
 
+    ui->requestList->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->requestList->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->requestList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    bookInfoHeaderView = ui->requestList->horizontalHeader();
+    bookInfoHeaderView->setSectionResizeMode(QHeaderView::Stretch);
 
     // 设置图书管理员个人信息的ID无法修改
     ui->librarianId->setEnabled(false);

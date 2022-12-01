@@ -20,6 +20,78 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>借书请求列表</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>请求列表：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="requestList">
+          <column>
+           <property name="text">
+            <string>ISBN号</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>借书人姓名</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>新建列</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>书名</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>借书起始时间</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>续借次数</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <item>
+           <spacer name="horizontalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>请求通过</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="searchBookInfo">
        <attribute name="title">
         <string>查询/编辑书籍信息</string>

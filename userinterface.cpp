@@ -299,6 +299,8 @@ void UserInterface::borrowBook()
 
     model->setQuery(sqlBorrowBook);
     QMessageBox::information(this, "Message", "已发送借书请求");
+
+    borrowRowIndex = -1;
 }
 
 void UserInterface::on_tabWidget_tabBarClicked(int index)
