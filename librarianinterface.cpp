@@ -372,7 +372,7 @@ void LibrarianInterface::getReturnBookList()
                     startTime = QDate::fromString(model->data(index).toString(), "yyyy-MM-dd");
                 } else if(j == 5)  {
                     deadline = QDate::fromString(model->data(index).toString(), "yyyy-MM-dd");
-                    QString time = QString("%1").arg((deadline.day() - startTime.day()) - (QDate::currentDate().day() - deadline.day()));
+                    QString time = QString("%1").arg((deadline.day() - startTime.day()) - (deadline.day() - QDate::currentDate().day()));
                     ui->returnBookList->setItem(i, j - 1, new QTableWidgetItem(time));
                 }
             }
@@ -380,6 +380,14 @@ void LibrarianInterface::getReturnBookList()
     } else {
         QMessageBox::critical(this, "Error", "查询信息不能为空");
     }
+}
+
+void LibrarianInterface::returnBook(QString isbn)
+{
+    QString sqlStr = QString("delete from borrow_books where  bb_isbn = '%1'").arg(isbn);
+    model->setQuery(sqlStr);
+    QMessageBox::information(this, "Message", "删除成功");
+    getReturnBookList();
 }
 
 
@@ -480,5 +488,15 @@ void LibrarianInterface::on_pushButton_clicked()
 void LibrarianInterface::on_returnUserIDSearchBtn_clicked()
 {
     getReturnBookList();
+}
+
+
+void LibrarianInterface::on_returnBookBtn_clicked()
+{
+    auto item  = ui->returnBookList->selectedItems();
+    if(!item.isEmpty())
+        returnBook(item.at(0)->text());
+    else
+        QMessageBox::critical(this, "Error", "未选中书籍");
 }
 

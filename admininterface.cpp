@@ -96,9 +96,25 @@ void AdminInterface::modifyAdminPasswd()
     getOldPasswd();
 }
 
+void AdminInterface::cancelUser(QString userID)
+{
+
+}
+
+void AdminInterface::cancelLibrarian(QString librarianID)
+{
+
+}
+
 void AdminInterface::on_confirm_clicked()
 {
     modifyAdminPasswd();
     QMessageBox::information(this, "密码修改", "修改成功", QMessageBox::Ok);
+}
+
+
+void AdminInterface::on_cancelUserBtn_clicked()
+{
+
 }
 

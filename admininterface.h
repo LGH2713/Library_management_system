@@ -20,6 +20,8 @@ public:
 private slots:
     void on_confirm_clicked();
 
+    void on_cancelUserBtn_clicked();
+
 private:
     Ui::AdminInterface *ui;
     QSqlDatabase *dbconn; // 数据库连接
@@ -34,6 +36,10 @@ private:
     void getOldPasswd();
     // 修改超级管理员密码
     void modifyAdminPasswd();
+    // 注销普通用户
+    void cancelUser(QString userID);
+    // 注销图书管理员
+    void cancelLibrarian(QString librarianID);
 };
 
 #endif // ADMININTERFACE_H
