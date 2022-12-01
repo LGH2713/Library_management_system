@@ -105,6 +105,7 @@ UserInterface::UserInterface(QWidget *parent) :
 {
     ui->setupUi(this);
     model = new QSqlQueryModel;
+    bookDetail = new BookDetail;
 
     ui->maleRadio->setChecked(true);
     ui->bookNameRadio->setChecked(true);
@@ -144,6 +145,7 @@ UserInterface::~UserInterface()
 {
     delete ui;
     delete model;
+    delete bookDetail;
 }
 
 void UserInterface::setUserID(QString userID)
@@ -261,6 +263,15 @@ void UserInterface::getAnnouncementList()
     }
 }
 
+void UserInterface::showDetails(QString isbn)
+{
+    bookDetail->setWindowTitle("书本详情");
+    bookDetail->setIsbn(isbn);
+    bookDetail->getDetail();
+    bookDetail->show();
+
+}
+
 void UserInterface::on_tabWidget_tabBarClicked(int index)
 {
     getUserInfo();
@@ -287,5 +298,13 @@ void UserInterface::on_bookSearchBtn_clicked()
 void UserInterface::on_orderSearchBtn_clicked()
 {
     searchAndShow(ui->orderSearch, ui->orderList, SearchWay::ByBookISBN);
+}
+
+
+void UserInterface::on_bookList_clicked(const QModelIndex &index)
+{
+    int currentRow = ui->bookList->selectionModel()->currentIndex().row();
+    QString isbn = ui->bookList->item(currentRow, 0)->text();
+    showDetails(isbn);
 }
 

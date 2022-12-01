@@ -44,6 +44,9 @@ set(PROJECT_SOURCES
         bookmanagement.cpp
         bookmanagement.h
         utils.h
+        bookdetail.cpp
+        bookdetail.h
+        bookdetail.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

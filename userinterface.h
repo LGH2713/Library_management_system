@@ -4,7 +4,7 @@
 #include <QSqlDatabase>
 #include <QSqlQueryModel>
 #include "bookmanagement.h"
-
+#include "bookdetail.h"
 
 namespace Ui {
 class UserInterface;
@@ -28,12 +28,15 @@ private slots:
 
     void on_orderSearchBtn_clicked();
 
+    void on_bookList_clicked(const QModelIndex &index);
+
 private:
     Ui::UserInterface *ui;
     QSqlDatabase *dbconn; // 数据库连接
     QSqlQueryModel *model; // 数据库模型
     QString userID; // 用户ID
     BookManagement *bookManagement;
+    BookDetail *bookDetail;
 
     void pullBookInfoList();                                            // 拉取数据库所有书本信息
     bool checkInput();                                                  // 审查输入的个人信息
@@ -41,6 +44,7 @@ private:
     void getUserInfo();                                                 // 获取个人信息
     void searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay way);  // 查询数据并显示到UI上
     void getAnnouncementList();                                         // 获取公告列表
+    void showDetails(QString isbn);                                                 // 展示书本详情
 };
 
 #endif // USERINTERFACE_H

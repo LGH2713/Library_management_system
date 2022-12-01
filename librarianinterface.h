@@ -44,15 +44,15 @@ private:
     QString userID; // 用户ID
     BookManagement *bookManagement;
 
-    void pullBookInfoList(); // 拉取数据库所有书本信息
-    bool checkInput(); // 审查输入的个人信息
-    void modifyUserInfo(); // 修改个人信息
-    void getUserInfo(); // 获取个人信息
-    void searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay way); // 查询数据并显示到UI上
-    QString getPublisherName(); // 获取发布公告的图书管理员的姓名
-    void publishAnnouncement(); // 发布公告
-    void addNewBook(); // 添加书籍
-    void clearAddInfo(); // 清除填写的添加信息
+    void pullBookInfoList();                                                // 拉取数据库所有书本信息
+    bool checkInput();                                                      // 审查输入的个人信息
+    void modifyUserInfo();                                                  // 修改个人信息
+    void getUserInfo();                                                     // 获取个人信息
+    void searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay way);   // 查询数据并显示到UI上
+    QString getPublisherName();                                             // 获取发布公告的图书管理员的姓名
+    void publishAnnouncement();                                             // 发布公告
+    void addNewBook();                                                      // 添加书籍
+    void clearAddInfo();                                                    // 清除填写的添加信息
 };
 
 #endif // LIBRARIANINTERFACE_H
