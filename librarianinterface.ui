@@ -22,7 +22,7 @@
       </property>
       <widget class="QWidget" name="searchBookInfo">
        <attribute name="title">
-        <string>查询书籍</string>
+        <string>查询/编辑书籍信息</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="0" column="0">

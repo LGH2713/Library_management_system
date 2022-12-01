@@ -1,6 +1,7 @@
 #include "userinterface.h"
 #include "ui_userinterface.h"
 #include <QMessageBox>
+#include <QDate>
 #include "bookmanagement.h"
 
 namespace UserUtils {
@@ -272,17 +273,43 @@ void UserInterface::showDetails(QString isbn)
 
 }
 
+void UserInterface::borrowBook()
+{
+    QModelIndex index;
+    QString start_time = QDate::currentDate().toString("yyyy-MM-dd");
+    QString deadline = QDate::currentDate().addDays(30).toString("yyyy-MM-dd");
+    QString selectISBN = ui->orderList->item(borrowRowIndex, 0)->text();
+
+    QString sqlBookStr = QString("select isbn, b_name from  book where isbn = '%1'").arg(selectISBN);
+    model->setQuery(sqlBookStr);
+    index = model->index(0,  0);
+    QString isbn = model->data(index).toString();
+    index = model->index(0, 1);
+    QString b_name = model->data(index).toString();
+
+    QString sqlUserName = QString("select u_name from user where u_id = '%1'").arg(userID);
+    model->setQuery(sqlUserName);
+    index = model->index(0, 0);
+    QString userName = model->data(index).toString();
+
+    QString sqlBorrowBook = QString("insert into borrow_books (bb_isbn, bb_name, bb_book_name, bb_start_time, bb_deadline) values "
+                                    "('%1', '%2',  '%3', '%4', '%5')").arg(isbn, userName, b_name, start_time, deadline);
+
+    qDebug() << sqlBorrowBook;
+
+    model->setQuery(sqlBorrowBook);
+    QMessageBox::information(this, "Message", "已发送借书请求");
+}
+
 void UserInterface::on_tabWidget_tabBarClicked(int index)
 {
     getUserInfo();
 }
 
-
 void UserInterface::on_infoEditBtn_clicked()
 {
     modifyUserInfo();
 }
-
 
 void UserInterface::on_bookSearchBtn_clicked()
 {
@@ -306,5 +333,15 @@ void UserInterface::on_bookList_clicked(const QModelIndex &index)
     int currentRow = ui->bookList->selectionModel()->currentIndex().row();
     QString isbn = ui->bookList->item(currentRow, 0)->text();
     showDetails(isbn);
+}
+
+
+void UserInterface::on_pushButton_2_clicked()
+{
+    borrowRowIndex = ui->orderList->currentRow();
+    if(borrowRowIndex != -1)
+        borrowBook();
+    else
+        QMessageBox::critical(this, "Error", "请选择书籍");
 }
 

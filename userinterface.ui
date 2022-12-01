@@ -143,7 +143,7 @@
       </widget>
       <widget class="QWidget" name="bookOrder">
        <attribute name="title">
-        <string>预约借书</string>
+        <string>图书借阅</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
@@ -191,17 +191,17 @@
           </column>
           <column>
            <property name="text">
-            <string>新建列</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
             <string>书名</string>
            </property>
           </column>
           <column>
            <property name="text">
             <string>作者</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>类别 </string>
            </property>
           </column>
           <column>
@@ -229,7 +229,7 @@
           <item>
            <widget class="QPushButton" name="pushButton_2">
             <property name="text">
-             <string>预约</string>
+             <string>提出借阅</string>
             </property>
            </widget>
           </item>
