@@ -39,7 +39,6 @@ private:
     QString userID; // 用户ID
     BookManagement *bookManagement;
     BookDetail *bookDetail;
-    int borrowRowIndex = -1; // 借书时选中的书的行
 
     void pullBookInfoList();                                            // 拉取数据库所有书本信息
     bool checkInput();                                                  // 审查输入的个人信息
@@ -48,7 +47,7 @@ private:
     void searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay way);  // 查询数据并显示到UI上
     void getAnnouncementList();                                         // 获取公告列表
     void showDetails(QString isbn);                                     // 展示书本详情
-    void borrowBook();                                                  // 借阅图书
+    void borrowBook(QString isbn);                                      // 借阅图书
 };
 
 #endif // USERINTERFACE_H

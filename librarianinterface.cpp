@@ -312,9 +312,13 @@ void LibrarianInterface::showDetails(QString isbn)
 
 void LibrarianInterface::getRequestList()
 {
-    QString sqlStr = QString("select bb_isbn, bb_name, bb_book_name, bb_start_time, bb_deadline, bb_renew_count from borrow_books");
+    QString sqlStr = QString("select bb_isbn, bb_name, bb_book_name, bb_start_time, bb_deadline, bb_renew_count from borrow_books "
+                             "where bb_status = 0");
 
     model->setQuery(sqlStr);
+
+    while(ui->requestList->rowCount() > 0)
+        ui->requestList->removeRow(0);
 
     QModelIndex index;
     for(int i = 0; i < model->rowCount(); i++) {
@@ -325,6 +329,14 @@ void LibrarianInterface::getRequestList()
             ui->requestList->item(i, j)->setTextAlignment(Qt::AlignCenter);
         }
     }
+}
+
+void LibrarianInterface::confirmRequest(QString isbn)
+{
+    QString sqlStr = QString("update borrow_books set bb_status = 1 where bb_isbn = '%1'").arg(isbn);
+    model->setQuery(sqlStr);
+    getRequestList();
+    QMessageBox::information(this, "Message", "已通过请求");
 }
 
 
@@ -406,5 +418,18 @@ void LibrarianInterface::on_bookList_clicked(const QModelIndex &index)
     int currentRow = ui->bookList->selectionModel()->currentIndex().row();
     QString isbn = ui->bookList->item(currentRow, 0)->text();
     showDetails(isbn);
+}
+
+
+
+
+void LibrarianInterface::on_pushButton_clicked()
+{
+    requestRowIndex = ui->requestList->currentRow();
+    auto item = ui->requestList->selectedItems();
+    if(!item.isEmpty())
+        confirmRequest(item.at(0)->text());
+    else
+        QMessageBox::critical(this, "Error", "没有选中图书");
 }
 

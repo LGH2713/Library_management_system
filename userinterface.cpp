@@ -273,17 +273,16 @@ void UserInterface::showDetails(QString isbn)
 
 }
 
-void UserInterface::borrowBook()
+void UserInterface::borrowBook(QString isbn)
 {
     QModelIndex index;
     QString start_time = QDate::currentDate().toString("yyyy-MM-dd");
     QString deadline = QDate::currentDate().addDays(30).toString("yyyy-MM-dd");
-    QString selectISBN = ui->orderList->item(borrowRowIndex, 0)->text();
 
-    QString sqlBookStr = QString("select isbn, b_name from  book where isbn = '%1'").arg(selectISBN);
+    QString sqlBookStr = QString("select isbn, b_name from  book where isbn = '%1'").arg(isbn);
     model->setQuery(sqlBookStr);
     index = model->index(0,  0);
-    QString isbn = model->data(index).toString();
+    QString b_isbn = model->data(index).toString();
     index = model->index(0, 1);
     QString b_name = model->data(index).toString();
 
@@ -293,14 +292,12 @@ void UserInterface::borrowBook()
     QString userName = model->data(index).toString();
 
     QString sqlBorrowBook = QString("insert into borrow_books (bb_isbn, bb_name, bb_book_name, bb_start_time, bb_deadline) values "
-                                    "('%1', '%2',  '%3', '%4', '%5')").arg(isbn, userName, b_name, start_time, deadline);
+                                    "('%1', '%2',  '%3', '%4', '%5')").arg(b_isbn, userName, b_name, start_time, deadline);
 
     qDebug() << sqlBorrowBook;
 
     model->setQuery(sqlBorrowBook);
     QMessageBox::information(this, "Message", "已发送借书请求");
-
-    borrowRowIndex = -1;
 }
 
 void UserInterface::on_tabWidget_tabBarClicked(int index)
@@ -340,9 +337,9 @@ void UserInterface::on_bookList_clicked(const QModelIndex &index)
 
 void UserInterface::on_pushButton_2_clicked()
 {
-    borrowRowIndex = ui->orderList->currentRow();
-    if(borrowRowIndex != -1)
-        borrowBook();
+    auto  item  = ui->orderList->selectedItems();
+    if(!item.isEmpty())
+        borrowBook(item.at(0)->text());
     else
         QMessageBox::critical(this, "Error", "请选择书籍");
 }

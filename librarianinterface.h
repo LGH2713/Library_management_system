@@ -39,6 +39,8 @@ private slots:
 
     void on_bookList_clicked(const QModelIndex &index);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::LibrarianInterface *ui;
     QString stringItemList;
@@ -47,6 +49,7 @@ private:
     QString userID; // 用户ID
     BookManagement *bookManagement;
     BookDetail *bookDetail;
+    int requestRowIndex; // 请求列表当前选中行
 
     void pullBookInfoList();                                                // 拉取数据库所有书本信息
     bool checkInput();                                                      // 审查输入的个人信息
@@ -59,6 +62,7 @@ private:
     void clearAddInfo();                                                    // 清除填写的添加信息
     void showDetails(QString isbn);                                         // 展示书本详情
     void getRequestList();                                                  // 获取借书请求列表
+    void confirmRequest(QString isbn);                                                  // 通过请求
 };
 
 #endif // LIBRARIANINTERFACE_H
