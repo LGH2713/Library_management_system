@@ -57,7 +57,8 @@ private:
     void publishAnnouncement();                                             // 发布公告
     void addNewBook();                                                      // 添加书籍
     void clearAddInfo();                                                    // 清除填写的添加信息
-    void showDetails(QString isbn);                                                 // 展示书本详情
+    void showDetails(QString isbn);                                         // 展示书本详情
+    void getRequestList();                                                  // 获取借书请求列表
 };
 
 #endif // LIBRARIANINTERFACE_H

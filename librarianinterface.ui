@@ -46,17 +46,17 @@
           </column>
           <column>
            <property name="text">
-            <string>新建列</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
             <string>书名</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>借书起始时间</string>
+            <string>起始时间</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>还书期限</string>
            </property>
           </column>
           <column>

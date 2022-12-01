@@ -139,6 +139,8 @@ LibrarianInterface::LibrarianInterface(QWidget *parent) :
 
     // 拉取图书信息
     pullBookInfoList();
+    // 获取请求列表
+    getRequestList();
 }
 
 LibrarianInterface::~LibrarianInterface()
@@ -306,6 +308,23 @@ void LibrarianInterface::showDetails(QString isbn)
     bookDetail->getDetail(false);
     bookDetail->showEditMode();
     bookDetail->show();
+}
+
+void LibrarianInterface::getRequestList()
+{
+    QString sqlStr = QString("select bb_isbn, bb_name, bb_book_name, bb_start_time, bb_deadline, bb_renew_count from borrow_books");
+
+    model->setQuery(sqlStr);
+
+    QModelIndex index;
+    for(int i = 0; i < model->rowCount(); i++) {
+        ui->requestList->insertRow(ui->requestList->rowCount());
+        for(int j = 0; j  < model->columnCount(); j++) {
+            index = model->index(i, j);
+            ui->requestList->setItem(i,  j, new QTableWidgetItem(model->data(index).toString()));
+            ui->requestList->item(i, j)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
 }
 
 
