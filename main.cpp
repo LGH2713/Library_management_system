@@ -1,12 +1,15 @@
-#include "database.h"
 #include "login.h"
 #include "initialpage.h"
 #include "register.h"
 #include <QApplication>
+#include <QProcess>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QApplication::addLibraryPath("./plugins");
+
+
 
 
     Login login;// 登录页
