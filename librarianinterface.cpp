@@ -262,7 +262,9 @@ void LibrarianInterface::publishAnnouncement()
     QString date = ui->publishTime->text();
     QString content = ui->announcementContent->toPlainText();
 
-    QString sqlStr = QString("insert into announcement (a_time, a_p_id, content) values ('%1', '%2', '%3')")
+    QString sqlStr = QString("insert into announcement (a_time, a_p_id, content) "
+                             "values "
+                             "('%1', '%2', '%3')")
             .arg(date, userID, content);
 
     if(content != nullptr) {
@@ -276,6 +278,7 @@ void LibrarianInterface::publishAnnouncement()
 
 void LibrarianInterface::addNewBook()
 {
+    // 获取界面输入的信息
     QString isbn = ui->addISBN->text();
     QString bookName = ui->addBookName->text();
     QString author = ui->addAuthor->text() != nullptr ? ui->addAuthor->text() : "佚名";
@@ -285,7 +288,10 @@ void LibrarianInterface::addNewBook()
     QString press = ui->addPress->text();
     QString inventory = ui->addInventory->text();
 
-    QString sqlStr = QString("insert into book (isbn, inventory, b_name, author, shelf_life, price, category, press) values ('%1', %2, '%3', '%4', '%5', %6, '%7', '%8')")
+    // 将数据插入图书信息表
+    QString sqlStr = QString("insert into book (isbn, inventory, b_name, author, shelf_life, price, category, press) "
+                             "values "
+                             "('%1', %2, '%3', '%4', '%5', %6, '%7', '%8')")
             .arg(isbn, inventory, bookName, author, shelfLife, price, category, press);
 
     qDebug() << sqlStr;

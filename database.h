@@ -21,6 +21,8 @@ private:
     QString userName;
     QString password;
     int port;
+
+    int init();
 };
 
 #endif // DATABASE_H

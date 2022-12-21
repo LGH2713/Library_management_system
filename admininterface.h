@@ -26,7 +26,6 @@ private slots:
 
 private:
     Ui::AdminInterface *ui;
-    QSqlDatabase *dbconn; // 数据库连接
     QSqlQueryModel *model; // 数据库模型
     // 获取超级级管理员界面所需信息
     void getInfo();

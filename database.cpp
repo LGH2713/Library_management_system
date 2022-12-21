@@ -1,4 +1,6 @@
 #include "database.h"
+#include <QFile>
+#include <QDir>
 
 Database::Database()
 {
@@ -26,4 +28,35 @@ Database::Database()
 Database::~Database()
 {
     dbconn.close();
+}
+
+int Database::init()
+{
+    int iRet = 0;
+    QFile sqlFile(QString(QDir::currentPath() + "/sql/librarian_system.sql"));
+    qDebug() << "QDir::currentPath() = " <<  QDir::currentPath() ;
+    if(!sqlFile.exists()) {
+        qDebug() << "文件不存在 ";
+        return -1;
+    }
+    if(!sqlFile.open(QIODevice::ReadOnly  | QIODevice::Text)) {
+        return -1;
+    }
+
+    QTextStream in(&sqlFile);
+    QString sql_str_file_data = in.readAll();
+    QSqlQuery qsql("LibraryManagementSystem");
+    QStringList qstr_list_sql = sql_str_file_data.split(";");
+    for(int i = 0; i < qstr_list_sql.size() - 1; i++) {
+        QString sql_str_part = qstr_list_sql.at(i).toUtf8();
+        qDebug() << "sql = " << sql_str_part;
+        bool sql_result = qsql.exec(sql_str_part);
+        if(!sql_result) {
+            QSqlError sql_error = qsql.lastError();
+            iRet = -1;
+            break;
+        }
+    }
+
+    return iRet;
 }

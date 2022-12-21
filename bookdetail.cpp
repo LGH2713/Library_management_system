@@ -23,7 +23,7 @@ void BookDetail::setIsbn(QString isbn)
     this->isbn = isbn;
 }
 
-void BookDetail::getDetail(bool isEdit)
+void BookDetail::getDetail(bool isEdit) // 设置图书详情界面的信息
 {
     QString sqlStr = QString("select * from book where isbn = '%1'").arg(isbn);
     model->setQuery(sqlStr);
@@ -32,46 +32,35 @@ void BookDetail::getDetail(bool isEdit)
     // 设置信息是否可编辑
         setEditable(isEdit);
 
-
     QModelIndex index = model->index(0, 0);
     ui->id->setText(model->data(index).toString());
-
 
     index = model->index(0, 1);
     ui->isbn->setText(model->data(index).toString());
 
-
     index = model->index(0, 2);
     ui->inventory->setText(model->data(index).toString());
-
 
     index = model->index(0, 3);
     ui->name->setText(model->data(index).toString());
 
-
     index = model->index(0, 4);
     ui->author->setText(model->data(index).toString());
-
 
     index = model->index(0, 5);
     ui->shelfLife->setText(model->data(index).toString());
 
-
     index = model->index(0, 6);
     ui->price->setText(model->data(index).toString());
-
 
     index = model->index(0, 7);
     ui->category->setText(model->data(index).toString());
 
-
     index = model->index(0, 8);
     ui->press->setText(model->data(index).toString());
 
-
     index = model->index(0, 9);
     ui->leanStatus->setText(model->data(index).toString());
-
 }
 
 void BookDetail::showEditMode()

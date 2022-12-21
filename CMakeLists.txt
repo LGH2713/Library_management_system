@@ -47,6 +47,9 @@ set(PROJECT_SOURCES
         bookdetail.cpp
         bookdetail.h
         bookdetail.ui
+        announcementdetail.cpp
+        announcementdetail.h
+        announcementdetail.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

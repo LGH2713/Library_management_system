@@ -1,4 +1,4 @@
-create table if not exists book 
+create table if not exists book
 (
 	b_id int auto_increment comment '书本编号',
     isbn char(12) not null comment 'ISBN编号',
@@ -55,31 +55,3 @@ create table if not exists borrow_books (
     bb_status int not null default 0 comment '处理状态',
     primary key(bb_id)
 ) engine = InnoDB default charset = utf8mb4;
-
-insert into admin 
-(a_name, a_password)
-values
-('root', '123456');
-
-insert into user
-(u_name, u_sex, u_password, u_mail)
-values
-('张三', 'male', 'zhangsan', 'zhangsan@qq.com'),
-('李四', 'male', 'lisi', 'lisi@qq.com'),
-('王五',  'female', 'wangwu', 'wangwu@qq.com');
-
-insert into  librarian
-(l_name, l_mail, l_password)
-values
-('李华', 'lihua@qq.com', 'lihua'),
-('韩梅梅', 'hanmeimei@qq.com', 'hanmeimei');
-
-insert into book 
-(isbn, inventory, b_name, author, price, category, press, shelf_life)
-values
-('9787544291170', 8, '百年孤独', '加西亚·马尔克斯', 55.00, 'Literature', '南海出版社', '2017-08-01'),
-('9787544297059', 8, '霍乱时期的爱情', '加西亚·马尔克斯', 69.00, 'Literature', '南海出版社', '2020-03-01'),
-('9787111544937', 2, '深入理解计算机系统', '兰德尔 E.布莱恩特', 139.00, 'IndustrialTechnology', '机械工业出版社', '2016-12-01'),
-('9787559602152', 10, '明朝那些事增补版', '当年明月', 405.00, 'HistoryAndGeography', '北京联合出版公司', '2021-09-01'),
-('9787100090131', 6, '论法的精神（上下卷）', '孟德斯鸠', 160.00, 'PoliticalAndLaw', '商务印书馆', '2012-05-01'),
-('9787103008331', 6, '肖邦夜曲集', '帕德雷夫斯基', 39.00, 'Art', '人民音乐出版社', '2017-03-01');

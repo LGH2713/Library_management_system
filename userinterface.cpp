@@ -252,7 +252,9 @@ void UserInterface::searchAndShow(QWidget *inputUI, QWidget *showUI, SearchWay w
 
 void UserInterface::getAnnouncementList()
 {
-    QString sqlStr = QString("select a.a_id, a.a_time, b.l_name from announcement a inner join librarian b on a.a_p_id = b.l_id");
+    QString sqlStr = QString("select a.a_id, a.a_time, b.l_name "
+                             "from announcement a "
+                             "inner join librarian b on a.a_p_id = b.l_id");
     model->setQuery(sqlStr);
 
     for(int i = 0; i < model->rowCount(); i++) {
@@ -279,6 +281,7 @@ void UserInterface::borrowBook(QString isbn)
     QString start_time = QDate::currentDate().toString("yyyy-MM-dd");
     QString deadline = QDate::currentDate().addDays(30).toString("yyyy-MM-dd");
 
+    // 获取书本的详情
     QString sqlBookStr = QString("select isbn, b_name from  book where isbn = '%1'").arg(isbn);
     model->setQuery(sqlBookStr);
     index = model->index(0,  0);
@@ -291,6 +294,7 @@ void UserInterface::borrowBook(QString isbn)
     index = model->index(0, 0);
     QString userName = model->data(index).toString();
 
+    // 将借阅的书的信息插入借书表
     QString sqlBorrowBook = QString("insert into borrow_books (bb_isbn, bb_name, bb_book_name, bb_start_time, bb_deadline) values "
                                     "('%1', '%2',  '%3', '%4', '%5')").arg(b_isbn, userName, b_name, start_time, deadline);
 

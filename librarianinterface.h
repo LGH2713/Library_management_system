@@ -48,7 +48,6 @@ private slots:
 private:
     Ui::LibrarianInterface *ui;
     QString stringItemList;
-    QSqlDatabase *dbconn; // 数据库连接
     QSqlQueryModel *model;
     QString userID; // 用户ID
     BookManagement *bookManagement;
