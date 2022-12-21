@@ -5,6 +5,7 @@
 #include <QSqlQueryModel>
 #include "bookmanagement.h"
 #include "bookdetail.h"
+#include "announcementdetail.h"
 
 namespace Ui {
 class UserInterface;
@@ -32,13 +33,15 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_announcementList_clicked(const QModelIndex &index);
+
 private:
     Ui::UserInterface *ui;
-    QSqlDatabase *dbconn; // 数据库连接
     QSqlQueryModel *model; // 数据库模型
     QString userID; // 用户ID
     BookManagement *bookManagement;
     BookDetail *bookDetail;
+    AnnouncementDetail *ad; // 公告详情界面
 
     void pullBookInfoList();                                            // 拉取数据库所有书本信息
     bool checkInput();                                                  // 审查输入的个人信息

@@ -107,6 +107,7 @@ UserInterface::UserInterface(QWidget *parent) :
     ui->setupUi(this);
     model = new QSqlQueryModel;
     bookDetail = new BookDetail;
+    ad = new AnnouncementDetail;
 
     ui->maleRadio->setChecked(true);
     ui->bookNameRadio->setChecked(true);
@@ -346,5 +347,14 @@ void UserInterface::on_pushButton_2_clicked()
         borrowBook(item.at(0)->text());
     else
         QMessageBox::critical(this, "Error", "请选择书籍");
+}
+
+
+void UserInterface::on_announcementList_clicked(const QModelIndex &index)
+{
+    int currentRow = ui->announcementList->selectionModel()->currentIndex().row();
+    QString id = ui->announcementList->item(currentRow, 0)->text();
+    ad->setData(id);
+    ad->show();
 }
 

@@ -24,7 +24,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="time"/>
      </item>
     </layout>
    </item>
@@ -38,7 +38,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="publisher"/>
      </item>
     </layout>
    </item>
@@ -52,7 +52,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="textEdit"/>
+      <widget class="QTextEdit" name="content"/>
      </item>
     </layout>
    </item>
